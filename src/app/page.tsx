@@ -1,15 +1,15 @@
 'use client'
-import { Roboto_Mono } from "next/font/google";
+// import { Roboto_Mono } from "next/font/google";
 import Header from "./components/Header";
 import Link from "next/link";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const robotoMono = Roboto_Mono({
-  variable: "--font-roboto-mono",
-  subsets: ["latin"],
-});
+// const robotoMono = Roboto_Mono({
+//   variable: "--font-roboto-mono",
+//   subsets: ["latin"],
+// });
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -109,8 +109,8 @@ export default function Home() {
             style={{ y: firstSectionY, scale: firstSectionScale, pointerEvents: firstSectionPointerEvents }}
             className='w-fit flex flex-col relative z-30'
           >
-            <h1 className={`text-6xl roboto-mono`}>Hi, I'm Naman</h1>
-            <p className={`text-2xl roboto-mono text-gray-400`}>I'm a software engineer based in India</p>
+            <h1 className={`text-6xl roboto-mono`}>Hi, I&apos;m Naman</h1>
+            <p className={`text-2xl roboto-mono text-gray-400`}>I&apos;m a software engineer based in India</p>
             <div className='flex flex-row gap-4 mt-4'>
               <Link href="/temp" className='text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer relative'>
                 <p className='roboto-mono'>About Me</p>
@@ -151,9 +151,9 @@ export default function Home() {
             className='max-w-xl flex'
           >
             <p className={`text-2xl roboto-mono text-gray-300 leading-relaxed`}>
-                nova {'%_'} <span className="text-blue-600">String</span> <span className="text-white text-6xl hover:text-gray-400 transition-all duration-300 cursor-pointer">about</span> = " I'm passionate about building beautiful and functional web applications.
+                nova {'%_'} <span className="text-blue-600">String</span> <span className="text-white text-6xl hover:text-gray-400 transition-all duration-300 cursor-pointer">about</span> = &quot; I&apos;m passionate about building beautiful and functional web applications.
               With expertise in modern web technologies, I create seamless user experiences
-              that make a difference. ";
+              that make a difference. &quot;;
             </p>
           </motion.div>
         </motion.div>
@@ -182,19 +182,19 @@ export default function Home() {
               </p>
               <div className="ml-8 mt-4">
                 <p className={`text-xl roboto-mono text-gray-300`}>
-                  university: <span className="text-green-400">"Delhi Technological University"</span>,
+                  university: <span className="text-green-400">&quot;Delhi Technological University&quot;</span>,
                 </p>
                 <p className={`text-xl roboto-mono text-gray-300`}>
-                  degree: <span className="text-green-400">"Bachelor of Technology"</span>,
+                  degree: <span className="text-green-400">&quot;Bachelor of Technology&quot;</span>,
                 </p>
                 <p className={`text-xl roboto-mono text-gray-300`}>
-                  major: <span className="text-green-400">"Information Technology"</span>,
+                  major: <span className="text-green-400">&quot;Information Technology&quot;</span>,
                 </p>
                 <p className={`text-xl roboto-mono text-gray-300`}>
-                  duration: <span className="text-green-400">"2021 - 2025"</span>,
+                  duration: <span className="text-green-400">&quot;2021 - 2025&quot;</span>,
                 </p>
                 <p className={`text-xl roboto-mono text-gray-300`}>
-                  cgpa: <span className="text-green-400">"7.5"</span>
+                  cgpa: <span className="text-green-400">7.5</span>
                 </p>
               </div>
               <p className={`text-xl roboto-mono text-gray-400 mt-4`}>{'}'}</p>
