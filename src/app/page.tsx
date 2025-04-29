@@ -2,7 +2,7 @@
 // import { Roboto_Mono } from "next/font/google";
 import Header from "./components/Header";
 import Link from "next/link";
-import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
+// import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Footer from "./components/Footer";
