@@ -1,5 +1,5 @@
 'use client'
-// import { Roboto_Mono } from "next/font/google";
+// import { Dancing_Script, Roboto_Mono } from "next/font/google";
 import Header from "../components/Header";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -30,8 +30,8 @@ import { SiJupyter } from "react-icons/si";
 import { SiGooglegemini } from "react-icons/si";
 import { RiOpenaiFill } from "react-icons/ri";
 
-// const robotoMono = Roboto_Mono({
-//   variable: "--font-roboto-mono",
+// const dancingScript = Dancing_Script({
+//   variable: "--font-dancing-script",
 //   subsets: ["latin"],
 // });
 
@@ -194,7 +194,7 @@ export default function About() {
                         <SiComma className='text-2xl transform rotate-180'/>
                         <SiComma className='text-2xl transform rotate-180'/>
                 </div>
-                <p className='text-5xl birthstone flex pl-12 pr-4'>
+                <p className={`text-3xl roboto-mono-italic flex pl-12 pr-4`}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam assumenda odio temporibus iure distinctio tempora ab corrupti!
                 </p>
                 <p className='text-md roboto-mono flex pl-12 text-gray-400'>
@@ -405,179 +405,6 @@ export default function About() {
             <div className='text-white w-full text-center'>
                 <h1 className='text-6xl roboto-mono'>Achievements / Certifications</h1>
                 <p className='text-2xl roboto-mono text-gray-400'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos</p>
-            </div>
-          </motion.div>
-        </motion.div>
-        <motion.div 
-          style={{
-            opacity: fourthSectionOpacity,
-            y: fourthSectionY,
-            zIndex: 5,
-            pointerEvents: fourthSectionPointerEvents
-          }}  
-          className='h-screen w-screen flex items-center justify-left px-28 fixed top-0'
-        >
-
-          <motion.div
-            style={{ scale: fourthSectionScale, pointerEvents: fourthSectionPointerEvents }}
-            className='flex flex-col w-full space-y-6'
-          >
-            <div className='text-white w-full text-center'>
-                <h1 className='text-6xl roboto-mono'>Skills & Technologies</h1>
-                <p className='text-2xl roboto-mono text-gray-400'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos</p>
-            </div>
-
-            <div className='flex flex-row gap-6 justify-center items-center'>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <FaJava className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Java</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <FaPython className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Python</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <FaHtml5 className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>HTML</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <FaCss3Alt className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>CSS</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <IoLogoJavascript className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>JavaScript</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <FaBootstrap className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Bootstrap</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <RiTailwindCssFill className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Tailwind CSS</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <SiTypescript className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>TypeScript</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <FaNode className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Node.js</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <FaReact className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>React</p>
-                </div>
-            </div>
-            
-            <div className='flex flex-row gap-4 justify-center items-center'>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <SiNextdotjs className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Next.js</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <SiVite className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Vite</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <SiSpringboot className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Spring Boot</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <GrMysql className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>SQL</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <SiMongodb className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>MongoDB</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <FaGitAlt className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Git</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <SiPostman className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Postman</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <VscVscode className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>VS Code</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <SiIntellijidea className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>IntelliJ IDEA</p>
-                </div>
-            </div>
-            
-            <div className='flex flex-row gap-4 justify-center items-center'>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <FaDocker className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Docker</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <PiBracketsCurly className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>DSA</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <SiJupyter className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Jupyter</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <SiGooglegemini className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>Gemini</p>
-                </div>
-                <div className='flex flex-col items-center justify-center'>
-                    <div className='flex items-center justify-center rounded-full bg-white p-4'>
-                        <RiOpenaiFill className='text-6xl text-black' />
-                    </div>
-                    <p className='text-md roboto-mono'>OpenAI</p>
-                </div>
             </div>
           </motion.div>
         </motion.div>

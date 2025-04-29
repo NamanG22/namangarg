@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Birthstone&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&family=Playwrite+AU+SA:wght@100..400&display=swap');
+
 @import "tailwindcss";
 
 :root {
@@ -21,12 +22,26 @@
   font-style: normal;
 }
 
+.roboto-mono-italic {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
 .birthstone {
   font-family: "Birthstone", cursive;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
+
+.merienda {
+  font-family: "Merienda", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
