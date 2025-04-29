@@ -7,14 +7,17 @@ export default function Header() {
           <Link href="/">
             <p className='text-white roboto-mono py-2 px-4 rounded-lg border border-white/0 hover:border-white/100 transition-all duration-300'>Home</p>
           </Link>
-          <Link href="/">
+          <Link href="/about">
             <p className='text-white roboto-mono py-2 px-4 rounded-lg border border-white/0 hover:border-white/100 transition-all duration-300'>About</p>
           </Link>
-          <Link href="/">
+          <Link href="/projects">
             <p className='text-white roboto-mono py-2 px-4 rounded-lg border border-white/0 hover:border-white/100 transition-all duration-300'>Projects</p>
           </Link>
-          <Link href="/">
+          <Link href="/contact">
             <p className='text-white roboto-mono py-2 px-4 rounded-lg border border-white/0 hover:border-white/100 transition-all duration-300'>Contact</p>
+          </Link>
+          <Link href="/blog">
+            <p className='text-white roboto-mono py-2 px-4 rounded-lg border border-white/0 hover:border-white/100 transition-all duration-300'>Blog</p>
           </Link>
       </div>
     </div>

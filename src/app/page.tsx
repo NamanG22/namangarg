@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Footer from "./components/Footer";
 
 // const robotoMono = Roboto_Mono({
 //   variable: "--font-roboto-mono",
@@ -112,27 +113,13 @@ export default function Home() {
             <h1 className={`text-6xl roboto-mono`}>Hi, I&apos;m Naman</h1>
             <p className={`text-2xl roboto-mono text-gray-400`}>I&apos;m a software engineer based in India</p>
             <div className='flex flex-row gap-4 mt-4'>
-              <Link href="/temp" className='text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer relative'>
+              <Link href="/about" className='text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer relative'>
                 <p className='roboto-mono'>About Me</p>
               </Link>
-              <Link href="/temp" className='text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer relative'>
+              <Link href="/contact" className='text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer relative'>
                 <p className='roboto-mono'>Get in touch</p>
               </Link>
             </div>
-          </motion.div>
-          <motion.div 
-            style={{ opacity: firstSectionOpacity }}
-            className='absolute bottom-4 right-4 flex flex-col gap-4 z-30'
-          >
-            <Link href="https://github.com/NamanG22" target="_blank" className="hover:scale-110 transition-transform">
-              <FaGithub className='text-white w-5 h-5' />
-            </Link>
-            <Link href="https://twitter.com/naman_kumar_s" target="_blank" className="hover:scale-110 transition-transform">
-              <FaTwitter className='text-white w-5 h-5' />
-            </Link>
-            <Link href="https://www.linkedin.com/in/namangarg22/" target="_blank" className="hover:scale-110 transition-transform">
-              <FaLinkedin className='text-white w-5 h-5' />
-            </Link>
           </motion.div>
         </motion.div>
 
@@ -151,7 +138,7 @@ export default function Home() {
             className='max-w-xl flex'
           >
             <p className={`text-2xl roboto-mono text-gray-300 leading-relaxed`}>
-                nova {'%_'} <span className="text-blue-600">String</span> <span className="text-white text-6xl hover:text-gray-400 transition-all duration-300 cursor-pointer">about</span> = &quot; I&apos;m passionate about building beautiful and functional web applications.
+                nova {'%_'} <span className="text-blue-600">String</span> <span className="text-white text-6xl">about</span> = &quot; I&apos;m passionate about building beautiful and functional web applications.
               With expertise in modern web technologies, I create seamless user experiences
               that make a difference. &quot;;
             </p>
@@ -202,13 +189,13 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        <motion.div className="min-h-screen w-screen flex flex-col items-center fixed justify-center" style={{
+        <motion.div className="min-h-screen w-screen flex flex-col items-center fixed justify-center px-28" style={{
           opacity: fourthSectionOpacity,
           y: fourthSectionY,
           zIndex: 1,
           pointerEvents: fourthSectionPointerEvents
         }}>
-        <motion.div className='flex space-x-4 items-center justify-between' style={{
+        <motion.div className='flex space-x-4 items-center justify-between w-full' style={{
           scale: fourthSectionScale, pointerEvents: fourthSectionPointerEvents
         }}>
           <div className='w-2/3'>
@@ -223,7 +210,7 @@ export default function Home() {
                 <span className="text-gray-400">nova %_</span>{' '}
                 <span className="text-purple-400">public</span>{' '}
                 <span className="text-blue-400">class</span>{' '}
-                <span className="text-white text-6xl">Experience</span>{' '}
+                <span className="text-white text-6xl">experience</span>{' '}
                 <span className="">=</span>{' '}
                 <span className="text-gray-400">{'{'}</span>
               </p>
@@ -313,10 +300,9 @@ export default function Home() {
         </motion.div>
       </motion.div>
 
+      <Footer />
+
       </div>
-      {/* <div className='min-h-[100vh] w-screen flex flex-col items-center justify-center px-28'>
-        
-      </div> */}
     </>
   );
 }
