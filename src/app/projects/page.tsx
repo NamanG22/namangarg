@@ -1,61 +1,69 @@
 'use client'
-
+// import { Roboto_Mono } from "next/font/google";
 import Header from "../components/Header";
-
-import Footer from "../components/Footer";
+import Link from "next/link";
+// import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { motion} from "framer-motion";
-// import { useScroll, useTransform } from "framer-motion";
+import Footer from "../components/Footer";
 
+// const robotoMono = Roboto_Mono({
+//   variable: "--font-roboto-mono",
+//   subsets: ["latin"],
+// });
+
+const projects = [
+  {
+    title: "Speech-to-Text",
+    description: "Developed a custom speech-to-text converter leveraging Google Generative Model Gemini-1.5-flash to accurately transcribe spoken language into text.",
+    points: [
+      "Utilized Google Generative Model Gemini-1.5-flash for accurate transcription.",
+      "Optimized the model for real-time transcription with low latency.",
+      "Converts the AI's text responses back into speech, simulating a natural conversation with 75% satisfaction.",
+    ],
+    technologies: ["Python", "PyAudio", "Gemini-1.5-flash"],
+    link: "https://github.com/NamanG22/Speech-to-Text-Converter",
+    image: "/bg.jpg"
+  },
+  {
+    title: "Nova Booking",
+    description: "Enterprise-level Hotel Booking Application",
+    points: [
+      "Developed using the MERN stack and Tailwind CSS, serving over 1,000 users with seamless experiences.",
+      "Integrated Stripe for secure and efficient payment processing, achieving a 99% transaction success rate.",
+      "Implemented user authentication with JSON Web Tokens (JWT) and HTTP cookies, reducing unauthorized access by 90%.",
+      "Built advanced forms and image uploading using Cloudinary, handling over 1,000 images with 99% upload success rate.",
+      "Ensured code quality by implementing robust automated testing, test coverage by 40% and reducing bugs by 50%.",
+      "Deployed the application to the cloud, achieving 99.9% uptime, reliable access for over 5,000 users.",
+    ],
+    technologies: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS", "JWT", "HTTP Cookies"],
+    link: "https://github.com/NamanG22/Nova-Booking",
+    image: "/bg.jpg"
+  }
+]
 
 export default function Projects() {
   const containerRef = useRef(null);
-//   const { scrollYProgress } = useScroll({
-//     target: containerRef,
-//     offset: ["start start", "end start"]
-//   });
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
 
-//   const sectionGap = 0.078;
-//   const sectionLength = 0.128;
+  const sectionGap = 0.15;
+  const sectionLength = 0.3;
 
-//   // First section animations - slower fade out
-//   const firstSectionOpacity = useTransform(scrollYProgress, [0, sectionLength], [1, 0]);
-//   const firstSectionY = useTransform(scrollYProgress, [0, sectionLength], [0, -50]);
-//   const firstSectionScale = useTransform(scrollYProgress, [0, sectionLength], [1, 0.8]);
-//   const firstSectionPointerEvents = useTransform(scrollYProgress, [0, sectionLength], ["auto", "none"]);
+  // First section animations - slower fade out
+  const firstSectionOpacity = useTransform(scrollYProgress, [0, sectionLength], [1, 0]);
+  const firstSectionY = useTransform(scrollYProgress, [0, sectionLength], [0, -50]);
+  const firstSectionScale = useTransform(scrollYProgress, [0, sectionLength], [1, 0.8]);
+  const firstSectionPointerEvents = useTransform(scrollYProgress, [0, sectionLength], ["auto", "none"]);
 
-//   // Second section animations - more gradual fade in
-//   const secondSectionOpacity = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap , (3*sectionLength)-sectionGap], [0, 1, 0]);
-//   const secondSectionY = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap , (3*sectionLength)-sectionGap], [50, 0, -50]);
-//   const secondSectionScale = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap , (3*sectionLength)-sectionGap], [0.8, 1, 0.8]);
-//   const secondSectionPointerEvents = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap , (3*sectionLength)-sectionGap], ["none", "auto", "none"]);
-
-//   // Third section animations
-//   const thirdSectionOpacity = useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap), (4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], [0, 1, 0]);
-//   const thirdSectionY = useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap), (4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], [50, 0, -50]);
-//   const thirdSectionScale = useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap), (4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], [0.8, 1, 0.8]);
-//   const thirdSectionPointerEvents = useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap), (4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], ["none", "auto", "none"]);
-
-//   const fourthSectionOpacity = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap), (7*sectionLength)-(3*sectionGap)], [0, 1, 0]);
-//   const fourthSectionY = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap), (7*sectionLength)-(3*sectionGap)], [50, 0, -50]);
-//   const fourthSectionScale = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap), (7*sectionLength)-(3*sectionGap)], [0.8, 1, 0.8]);
-//   const fourthSectionPointerEvents = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap), (7*sectionLength)-(3*sectionGap)], ["none", "auto", "none"]);
-
-//   const fifthSectionOpacity = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap), (9*sectionLength)-(4*sectionGap)], [0, 1, 0]);
-//   const fifthSectionY = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap), (9*sectionLength)-(4*sectionGap)], [50, 0, -50]);
-//   const fifthSectionScale = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap), (9*sectionLength)-(4*sectionGap)], [0.8, 1, 0.8]);
-//   const fifthSectionPointerEvents = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap), (9*sectionLength)-(4*sectionGap)], ["none", "auto", "none"]);  
-
-//   const sixthSectionOpacity = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap)], [0, 1]);
-//   const sixthSectionY = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap)], [50, 0]);
-//   const sixthSectionScale = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap)], [0.8, 1]);
-//   const sixthSectionPointerEvents = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap)], ["none", "auto"]);
-
-//   const firstBackgroundOpacity = useTransform(scrollYProgress, [(4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], [1, 0]);
-//   const firstBackgroundPointerEvents = useTransform(scrollYProgress, [(4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], ["auto", "none"]);
-
-//   const secondBackgroundOpacity = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], [0, 1]);
-//   const secondBackgroundPointerEvents = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], ["none", "auto"]);
+  // Second section animations - more gradual fade in
+  const secondSectionOpacity = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], [0, 1]);
+  const secondSectionYLeft = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], [50, 0]);
+  const secondSectionYRight = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], [50, 0]);
+  const secondSectionScale = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], [0.8, 1]);
+  const secondSectionPointerEvents = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], ["none", "auto"]);
   // const firstBackgroundY = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
   // const firstBackgroundScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
@@ -63,34 +71,111 @@ export default function Projects() {
     <>
       {/* Fixed Background */}
       <motion.div 
-        className='min-h-screen w-screen fixed top-0 left-0'
+        className='min-h-screen w-screen fixed top-0 left-0 bg-[position:75%_0%] sm:bg-[position:100%_100%]'
         style={{
-          backgroundImage: "url('/bg11.jpg')", 
+          backgroundImage: "url('/bg9.jpg')", 
           backgroundSize: "cover", 
-          backgroundPosition: "center", 
           backgroundRepeat: "no-repeat",
-          backgroundPositionX:"100%",
-          backgroundPositionY:"100%",
-        //   opacity: firstBackgroundOpacity,
+          opacity: 1,
           zIndex: 1,
-        //   pointerEvents: firstBackgroundPointerEvents
+          pointerEvents: "none"
         }}
       />
 
-      <div ref={containerRef} className='min-h-[100vh] relative'> 
+      <div ref={containerRef} className='min-h-[200vh] relative'> 
         <Header />
+        {/* First Section */}
         <motion.div 
-            className='h-screen w-screen fixed top-0 flex items-end justify-center px-28 py-28'
-            style={{
-                opacity: 1,
-                zIndex: 20,
-                pointerEvents: "auto"
-            }}
+          className='h-screen w-screen fixed top-0 flex items-center justify-left'
+          style={{
+            opacity: firstSectionOpacity,
+            zIndex: 20,
+            pointerEvents: firstSectionPointerEvents
+          }}
         >
-            <motion.div className='w-full flex flex-col relative z-30 items-center justify-center'>
-                <h1 className={`text-6xl roboto-mono`}>Coming Soon...</h1>
-            </motion.div>
+          <motion.div 
+            style={{ y: firstSectionY, scale: firstSectionScale, pointerEvents: firstSectionPointerEvents }}
+            className='h-full flex relative z-30 w-[42%]'
+          >
+          
+            <div className="h-full flex flex-col items-center justify-center p-8">
+              <img src={projects[0].image} alt={projects[0].title} className="w-[80%] object-cover" />
+              <img src={projects[0].image} alt={projects[0].title} className="w-[30%] object-cover -mt-20 self-start ml-5" />
+              <img src={projects[0].image} alt={projects[0].title} className="w-[50%] object-cover -mt-40 self-end" />
+            </div>
+          </motion.div>
+          <motion.div 
+            style={{ y: firstSectionY, scale: firstSectionScale, pointerEvents: firstSectionPointerEvents }}
+            className='h-full flex relative z-30 w-[58%]'
+          >
+            <div className="h-full flex flex-row gap-4 items-center justify-center pr-8">
+              <div className="w-full flex flex-col gap-4 border-black rounded-lg p-8 text-white">
+                <h1 className="text-2xl sm:text-5xl roboto-mono">{projects[0].title}</h1>
+                <h2 className="text-md sm:text-xl text-gray-400 roboto-mono">{projects[0].description}</h2>
+                <ul className="list-disc ml-4">
+                  {projects[0].points.map((point, index) => (
+                    <li key={index} className="text-sm sm:text-[1rem] text-white/70 roboto-mono">{point}</li>
+                  ))}
+                </ul>
+                <div className="flex flex-row gap-4">
+                  {projects[0].technologies.map((technology, index) => (
+                    <h3 key={index} className="text-sm sm:text-md roboto-mono bg-white/20 px-3 py-1 rounded-full text-white">{technology}</h3>
+                  ))}
+                </div>
+                <div className="flex flex-row gap-4 w-full">
+                  <Link href={projects[0].link} className="w-full text-center text-white text-sm sm:text-lg roboto-mono bg-white/20 py-3 rounded-md">View Project</Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
+
+        <motion.div 
+          className='h-screen w-screen fixed top-0 flex items-center justify-left'
+          style={{
+            opacity: secondSectionOpacity,
+            zIndex: 20,
+            pointerEvents: secondSectionPointerEvents
+          }}
+        >
+          <motion.div 
+            style={{ y: secondSectionYLeft, scale: secondSectionScale, pointerEvents: secondSectionPointerEvents }}
+            className='h-full flex relative z-30 w-[42%]'
+          >
+            <div className="h-full flex flex-col items-center justify-center p-8">
+              <img src={projects[0].image} alt={projects[0].title} className="w-[80%] object-cover" />
+              <img src={projects[0].image} alt={projects[0].title} className="w-[30%] object-cover -mt-20 self-start ml-5" />
+              <img src={projects[0].image} alt={projects[0].title} className="w-[50%] object-cover -mt-40 self-end" />
+            </div>
+          </motion.div>
+          <motion.div 
+            style={{ y: secondSectionYRight, scale: secondSectionScale, pointerEvents: secondSectionPointerEvents }}
+            className='h-full flex relative z-30  w-[58%]'
+          >
+            <div className="h-full flex flex-row gap-4 items-center justify-center pr-8">
+              <div className="w-full flex flex-col gap-4 border-black rounded-lg p-8 text-white">
+                <h1 className="text-2xl sm:text-5xl roboto-mono">{projects[1].title}</h1>
+                <h2 className="text-md sm:text-xl text-gray-400 roboto-mono">{projects[1].description}</h2>
+                <ul className="list-disc ml-4">
+                  {projects[1].points.map((point, index) => (
+                    <li key={index} className="text-sm sm:text-[1rem] text-white/70 roboto-mono">{point}</li>
+                  ))}
+                </ul>
+                <div className="inline-flex flex-wrap gap-4">
+                  {projects[1].technologies.map((technology, index) => (
+                    <h3 key={index} className="text-sm sm:text-md roboto-mono bg-white/20 px-3 py-1 rounded-full text-white">{technology}</h3>
+                  ))}
+                </div>
+                <div className="flex flex-row gap-4 w-full">
+                  <Link href={projects[1].link} className="w-full text-center text-white text-sm sm:text-lg roboto-mono bg-white/20 py-3 rounded-md">View Project</Link>
+                </div>
+              </div>
+            </div>
+            
+          </motion.div>
+        </motion.div>
+
+
       <Footer />
 
       </div>

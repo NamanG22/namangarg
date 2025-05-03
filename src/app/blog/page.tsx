@@ -69,7 +69,7 @@ export default function Blog() {
           backgroundSize: "cover", 
           backgroundPosition: "center", 
           backgroundRepeat: "no-repeat",
-          backgroundPositionX:"100%",
+          backgroundPositionX:"45%",
           backgroundPositionY:"100%",
         //   opacity: firstBackgroundOpacity,
           zIndex: 1,
@@ -80,7 +80,7 @@ export default function Blog() {
       <div ref={containerRef} className='min-h-[100vh] relative'> 
         <Header />
         <motion.div 
-            className='h-screen w-screen fixed top-0 flex items-end justify-center px-28 py-28'
+            className='h-screen w-screen fixed top-0 flex items-end justify-center px-10 sm:px-28 py-48 sm:py-28'
             style={{
                 opacity: 1,
                 zIndex: 20,
@@ -88,7 +88,7 @@ export default function Blog() {
             }}
         >
             <motion.div className='w-full flex flex-col relative z-30 items-center justify-center'>
-                <h1 className={`text-6xl roboto-mono`}>Coming Soon...</h1>
+                <h1 className={`text-4xl sm:text-6xl roboto-mono w-full text-center`}>Coming Soon...</h1>
             </motion.div>
         </motion.div>
       <Footer />
