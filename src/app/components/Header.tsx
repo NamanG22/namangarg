@@ -1,14 +1,7 @@
 import Link from "next/link";
-import { WindSong } from "next/font/google";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
-
-const windSong = WindSong({
-  variable: "--font-windsong",
-  subsets: ["latin"],
-  weight: ["400"],
-});
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

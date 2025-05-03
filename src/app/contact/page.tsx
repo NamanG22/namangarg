@@ -94,7 +94,7 @@ export default function Contact() {
             <motion.div className='w-full min-h-screen flex relative z-30 items-center justify-center'>
                 <div className="flex flex-col min-h-screen w-3/5 items-start justify-center space-y-4 pr-40">
                     <h1 className={`text-4xl sm:text-5xl roboto-mono w-full text-start`}>Contact Me</h1>
-                    <p className="text-sm sm:text-lg roboto-mono w-full text-start text-white/50">I'm currently working on something new and exciting. Please check back soon!</p>
+                    <p className="text-sm sm:text-lg roboto-mono w-full text-start text-white/50">I&apos;m currently working on something new and exciting. Please check back soon!</p>
                     <div className="flex flex-col items-start justify-start gap-4 mt-8">
                         <p className="text-sm sm:text-lg roboto-mono w-full text-start flex items-center justify-start gap-4  "><span className="text-white"><FaGithub className='text-white w-5 h-5' /></span> NamanG22</p>
                         <p className="text-sm sm:text-lg roboto-mono w-full text-start flex items-center justify-start gap-4  "><span className="text-white"><FaTwitter className='text-white w-5 h-5' /></span> NamanG2203</p>
