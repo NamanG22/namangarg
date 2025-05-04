@@ -6,11 +6,22 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Footer from "./components/Footer";
+import { FaCaretDown } from "react-icons/fa";
 
 // const robotoMono = Roboto_Mono({
 //   variable: "--font-roboto-mono",
 //   subsets: ["latin"],
 // });
+
+const experiences = [
+  {
+    dateStart: "",
+    dateEnd: "Dec 2021",
+    title: "Software Engineer",
+    company: "Google",
+  }
+]
+
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -92,9 +103,9 @@ export default function Home() {
         </motion.div>
       </motion.div>
       <motion.div 
-        className='min-h-screen w-screen fixed top-0 left-0 bg-[position:45%_0%] sm:bg-[position:45%_100%]'
+        className='min-h-screen w-screen fixed top-0 left-0 bg-[position:100%_100%] sm:bg-[position:45%_100%]'
         style={{
-          backgroundImage: "url('/bg8.jpg')", 
+          backgroundImage: "url('/bg14.jpg')", 
           backgroundSize: "cover", 
           backgroundRepeat: "no-repeat",
           opacity: thirdBackgroundOpacity,
@@ -147,9 +158,17 @@ export default function Home() {
           >
             <div className={`text-md sm:text-xl roboto-mono text-gray-300 leading-relaxed flex flex-col gap-4`}>
                 <p className="text-white text-3xl sm:text-6xl block">About</p>
-                <p className="text-gray-300">
-                I&apos;m a developer with a passion for crafting web and mobile experiences that feel natural, fast, and meaningful. Whether it&apos;s building scalable apps, fine-tuning user flows, or connecting smooth interfaces with efficient backends—I build things that work and feel right.
-                </p>
+                <div className="flex gap-4">
+                  <div className='w-[10px] bg-gray-400 rounded-full'></div>
+                  <div className="flex flex-col gap-4">
+                    <p className="text-gray-300">
+                    I&apos;m a developer with a passion for crafting web and mobile experiences that feel natural, fast, and meaningful. 
+                    </p>
+                    <p className="text-gray-300">
+                    Whether it&apos;s building scalable apps, fine-tuning user flows, or connecting smooth interfaces with efficient backends—I build things that work and feel right.
+                    </p>
+                  </div>
+                </div>
                 <Link href="/contact" className='text-white w-fit px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 relative'>
                   <p className='text-sm sm:text-lg roboto-mono'>Learn More</p>
                 </Link>
@@ -187,6 +206,15 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+              <div className="flex gap-4">
+
+              <Link href="/projects" className='text-white w-fit px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 relative'>
+                  <p className='text-sm sm:text-lg roboto-mono'>Academic Projects</p>
+                </Link>
+              <Link href="/projects" className='text-white w-fit px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 relative'>
+                  <p className='text-sm sm:text-lg roboto-mono'>Personal Projects</p>
+                </Link>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -197,106 +225,222 @@ export default function Home() {
           zIndex: 1,
           pointerEvents: fourthSectionPointerEvents
         }}>
-        <motion.div className='flex flex-col sm:flex-row space-x-4 space-y-4 items-center justify-between w-full' style={{
+        <motion.div className='flex flex-col h-screen space-y-12 items-center justify-start w-full py-16 pt-32' style={{
           scale: fourthSectionScale, pointerEvents: fourthSectionPointerEvents
         }}>
-          <div className='w-full sm:w-2/3'>
-            <div className="flex flex-col roboto-mono">
-              <p className="text-lg sm:text-2xl"> 
-                <span className="">@Getter</span>
-              </p>
-              <p className="text-lg sm:text-2xl">
-                <span className="">@Setter</span>
-              </p>
-              <p className="text-lg sm:text-2xl">
-                <span className="text-gray-400">nova %_</span>{' '}
-                <span className="text-purple-400">public</span>{' '}
-                <span className="text-blue-400">class</span>{' '}
-                <span className="text-white text-2xl sm:text-6xl">experience</span>{' '}
-                <span className="">=</span>{' '}
-                <span className="text-gray-400">{'{'}</span>
-              </p>
-              <div className="ml-8 mt-4 sm:space-y-2 text-md sm:text-xl">
-                <p className="">
-                  <span className="text-blue-400">String</span>{' '}
-                  <span className="">company</span>
-                  <span className="text-gray-400">;</span>
-                </p>
-                <p className="">
-                  <span className="text-blue-400">String</span>{' '}
-                  <span className="">position</span>
-                  <span className="text-gray-400">;</span>
-                </p>
-                <p className="">
-                  <span className="text-blue-400">Date</span>{' '}
-                  <span className="">startDate</span>
-                  <span className="text-gray-400">;</span>
-                </p>
-                <p className="">
-                  <span className="text-blue-400">Date</span>{' '}
-                  <span className="">endDate</span>
-                  <span className="text-gray-400">;</span>
-                </p>
-                <p className="">
-                  <span className="text-blue-400">String</span>{' '}
-                  <span className="">description</span>
-                  <span className="text-gray-400">;</span>
-                </p>
-                <p className="mt-4">
-                  <span className="">@Override</span>
-                </p>
-                <p className="">
-                  <span className="text-purple-400">public</span>{' '}
-                  <span className="text-blue-400">String</span>{' '}
-                  <span className="">toString</span>
-                  <span className="text-gray-400">() {'{'}</span>
-                </p>
-                <div className="ml-8">
-                  <p className="roboto-mono text-gray-400">...</p>
+          <div className='w-full flex flex-col items-center justify-center'>      
+            <div className="flex w-full text-white">
+                <div className='flex flex-col items-center justify-center mx-[76px]'>
+                  <h1 className='text-sm roboto-mono text-center'>DTU Supermileage Team</h1>
+                  <p className='text-sm roboto-mono text-center'>MAR 2022 - JAN 2023</p>
+                  <FaCaretDown className='text-2xl text-center text-white' />
                 </div>
-                <p className="text-gray-400">{'}'}</p>
+                
+                <div className='flex flex-col items-center justify-center ml-[250.5px]'>
+                  <h1 className='text-sm roboto-mono text-center'>Placewit</h1>
+                  <p className='text-sm roboto-mono text-center'>SEPT 2023 - MAR 2024</p>
+                  <FaCaretDown className='text-2xl text-center text-white' />
+                </div>
+                
+                <div className='flex flex-col items-center justify-center ml-[240px]'>
+                  <h1 className='text-sm roboto-mono text-center'>Paytm</h1>
+                  <p className='text-sm roboto-mono text-center'>JAN 2025 - Present</p>
+                  <FaCaretDown className='text-2xl text-center text-white' />
+                </div>
+                
+            </div>
+            <div className="flex w-full -mb-[40px] text-white">
+                
+                <div className='flex flex-col items-center justify-center mx-[311.5px]'>
+                  <h1 className='text-sm roboto-mono text-center'>Mathematics Teacher</h1>
+                  <p className='text-sm roboto-mono text-center'>OCT 2022 - FEB 2024</p>
+                  <FaCaretDown className='text-2xl text-center text-white' />
+                </div>
+                
+                <div className='flex flex-col items-center justify-center ml-[36px]'>
+                  <h1 className='text-sm roboto-mono text-center'>Newsviews</h1>
+                  <p className='text-sm roboto-mono text-center'>JULY 2024 - AUG 2024</p>
+                  <FaCaretDown className='text-2xl text-center text-white' />
+                </div>
+              
+            </div>
+            <div className="flex h-full w-full space-x-4 hidden">
+              <p className='text-sm roboto-mono text-center opacity-0'>DEC 2021</p>
+              <div className='flex h-full w-full justify-between'>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
               </div>
-              <p className="text-gray-400">{'}'}</p>
-              <p className="mt-2 text-sm sm:text-xl">
-                <span className="text-blue-400">experience</span>{' '}
-                <span className="">exp1</span>{' '}
-                <span className="">=</span>{' '}
-                <span className="text-purple-400">new</span>{' '}
-                <span className="text-blue-400">experience</span>
-                <span className="text-gray-400">();</span>
-              </p>
-              <p className="text-sm sm:text-xl">
-                <span className="text-blue-400">experience</span>{' '}
-                <span className="">exp2</span>{' '}
-                <span className="">=</span>{' '}
-                <span className="text-purple-400">new</span>{' '}
-                <span className="text-blue-400">experience</span>
-                <span className="text-gray-400">();</span>
-              </p>
-              <p className="text-sm sm:text-xl">
-                <span className="text-blue-400">experience</span>{' '}
-                <span className="">exp3</span>{' '}
-                <span className="">=</span>{' '}
-                <span className="text-purple-400">new</span>{' '}
-                <span className="text-blue-400">experience</span>
-                <span className="text-gray-400">();</span>
-              </p>
+              <p className='text-sm roboto-mono text-center  opacity-0'>JULY 2022</p>
+              <div className='flex h-full w-full justify-between'>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+              </div>
+              <p className='text-sm roboto-mono text-center  opacity-0'>JULY 2023</p>
+              <div className='flex h-full w-full justify-between'>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+              </div>
+              <div className='flex flex-col items-center justify-center'>
+                <div className='w-[1px] h-full bg-gray-400'></div>
+                <p className='text-sm roboto-mono text-center opacity-0'>JULY 2024</p>
+              </div>
+              <div className='flex h-full w-full justify-between'>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+              </div>
+              <p className='text-sm roboto-mono text-center  opacity-0'>JUNE 2025</p>
             </div>
           </div>
-          <div className="flex flex-col w-full sm:w-1/3 bg-black rounded-lg h-fit">
-            <div className="flex justify-center w-full border-b border-white/10">
-              <p className="text-xl roboto-mono text-gray-400 self-center">Terminal</p>
+          <div className='w-full flex items-center justify-center space-x-4'>
+            <p className='text-sm roboto-mono text-center'>DEC 2021</p>
+            <div className='flex w-full'>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
             </div>
-            <p className="text-xl roboto-mono text-gray-400 w-full text-center">~/nova</p>
-            <div className='w-full p-2 bg-gray-600 relative rounded-b-lg'>
-              <p className="text-xl text-gray-400 absolute inset-0 pl-4 pt-3.5 pointer-events-none">
-                nova {'%_'}
-              </p>
-              <input 
-                type="text" 
-                placeholder="" 
-                className="w-full p-2 rounded-lg text-white bg-transparent border-none pl-24"
-              />
+            <p className='text-sm roboto-mono text-center'>JULY 2022</p>
+            <div className='flex w-full'>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+            </div>
+            <p className='text-sm roboto-mono text-center'>JULY 2023</p>
+            <div className='flex w-full'>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+            </div>
+            <p className='text-sm roboto-mono text-center'>JULY 2024</p>
+            <div className='flex w-full'>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+              <div className='w-full h-[1px] bg-gray-400'></div>
+            </div>
+            <p className='flex-1 text-sm roboto-mono text-center'>JUNE 2025</p>
+          </div>
+          <div className='w-full flex flex-col items-center justify-center'>    
+            <div className="flex h-full w-full space-x-4 hidden">
+              <p className='text-sm roboto-mono text-center opacity-0'>DEC 2021</p>
+              <div className='flex h-full w-full justify-between'>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+              </div>
+              <p className='text-sm roboto-mono text-center  opacity-0'>JULY 2022</p>
+              <div className='flex h-full w-full justify-between'>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+              </div>
+              <p className='text-sm roboto-mono text-center  opacity-0'>JULY 2023</p>
+              <div className='flex h-full w-full justify-between'>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+              </div>
+              <p className='text-sm roboto-mono text-center opacity-0'>JULY 2024</p>
+              <div className='flex h-full w-full justify-between'>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+                <div className='w-[1px] h-full bg-gray-400 opacity-0'></div>
+              </div>
+              <p className='text-sm roboto-mono text-center  opacity-0'>JUNE 2025</p>
+            </div>  
+            <div className="flex w-full -mb-[40px] text-white justify-between">
+                
+                <div className='flex flex-col items-center justify-center border'>
+                  <h1 className='text-sm roboto-mono text-center'>SanteSYS</h1>
+                  <h2 className='text-sm roboto-mono text-center'>(StartUp Effort 1)</h2>
+                  <p className='text-sm roboto-mono text-center'>NOV 2024</p>
+                  <FaCaretDown className='text-2xl text-center text-white' />
+                </div>
+                
+                <div className='flex flex-col items-center justify-center border'>
+                  <h1 className='text-sm roboto-mono text-center'>Locallie</h1>
+                  <h2 className='text-sm roboto-mono text-center'>(StartUp Effort 2)</h2>
+                  <p className='text-sm roboto-mono text-center'>MAR 2025</p>
+                  <FaCaretDown className='text-2xl text-center text-white' />
+                </div>
             </div>
           </div>
         </motion.div>
