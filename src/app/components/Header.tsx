@@ -2,6 +2,13 @@ import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
+import { WindSong } from "next/font/google";
+
+const windSong = WindSong({
+  variable: "--font-windsong",
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,9 +20,9 @@ export default function Header() {
   return (
     <div className='fixed top-0 left-0 w-full flex flex-col z-50'>
       <div className='flex justify-between items-center px-10 sm:px-28'>
-        <div className='flex p-4 items-center justify-center sm:flex-1'>
-          <p className={`text-4xl windsong py-2`}>Naman Garg</p>
-        </div>
+        <Link href="/" className='flex p-4 items-center justify-center sm:flex-1'>
+          <p className={`text-4xl ${windSong.className} py-2`}>Naman Garg</p>
+        </Link>
         <div className='justify-center items-center p-4 space-x-8 flex-2 hidden sm:flex'>
           <Link href="/">
             <p className='text-white roboto-mono py-2 px-4 rounded-lg border border-white/0 hover:border-white/100 transition-all duration-300 hover:bg-black/20'>Home</p>

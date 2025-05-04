@@ -45,21 +45,14 @@ export default function Home() {
   const fourthSectionScale = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], [0.8, 1]);
   const fourthSectionPointerEvents = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], ["none", "auto"]);
 
-  // const fifthSectionOpacity = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap), (9*sectionLength)-(4*sectionGap)], [0, 1, 0]);
-  // const fifthSectionY = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap), (9*sectionLength)-(4*sectionGap)], [50, 0, -50]);
-  // const fifthSectionScale = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap), (9*sectionLength)-(4*sectionGap)], [0.8, 1, 0.8]);
-  // const fifthSectionPointerEvents = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap), (9*sectionLength)-(4*sectionGap)], ["none", "auto", "none"]);  
+  const firstBackgroundOpacity = useTransform(scrollYProgress, [(2*sectionLength)-(sectionGap), (3*sectionLength)-(sectionGap), (4*sectionLength)-(sectionGap)], [1, 0, 0]);
+  const firstBackgroundPointerEvents = useTransform(scrollYProgress, [(2*sectionLength)-(sectionGap), (3*sectionLength)-(sectionGap), (4*sectionLength)-(sectionGap)], ["auto", "none", "none"]);
 
-  // const sixthSectionOpacity = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap), (11*sectionLength)-(5*sectionGap)], [0, 1, 0]);
-  // const sixthSectionY = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap), (11*sectionLength)-(5*sectionGap)], [50, 0, -50]);
-  // const sixthSectionScale = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap), (11*sectionLength)-(5*sectionGap)], [0.8, 1, 0.8]);
-  // const sixthSectionPointerEvents = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap), (11*sectionLength)-(5*sectionGap)], ["none", "auto", "none"]);
+  const secondBackgroundOpacity = useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap), (4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], [0, 1, 0]);
+  const secondBackgroundPointerEvents = useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap), (4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], ["none", "auto", "none"]);
 
-  const firstBackgroundOpacity = useTransform(scrollYProgress, [(4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], [1, 0]);
-  const firstBackgroundPointerEvents = useTransform(scrollYProgress, [(4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], ["auto", "none"]);
-
-  const secondBackgroundOpacity = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], [0, 1]);
-  const secondBackgroundPointerEvents = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], ["none", "auto"]);
+  const thirdBackgroundOpacity = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], [0, 1]);
+  const thirdBackgroundPointerEvents = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], ["none", "auto"]);
   // const firstBackgroundY = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
   // const firstBackgroundScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
@@ -78,14 +71,35 @@ export default function Home() {
         }}
       />
       <motion.div 
+        className='min-h-screen w-screen flex items-center justify-center fixed top-0 left-0 bg-[position:45%_0%] sm:bg-[position:45%_100%]'
+        style={{
+          opacity: secondBackgroundOpacity,
+          zIndex: 1,
+          pointerEvents: secondBackgroundPointerEvents
+        }}
+      >
+        <motion.div className='relative w-full min-h-screen '>
+          <motion.div className='absolute w-full h-full bg-[position:80%_30%]' style={{
+            backgroundImage: "url('/bg13.jpg')", 
+            backgroundSize: "cover", 
+            backgroundRepeat: "no-repeat",
+            opacity: secondBackgroundOpacity,
+            zIndex: 1,
+            pointerEvents: secondBackgroundPointerEvents
+          }}
+          />
+          <div className='absolute w-full h-full bg-black/70 z-1'/>
+        </motion.div>
+      </motion.div>
+      <motion.div 
         className='min-h-screen w-screen fixed top-0 left-0 bg-[position:45%_0%] sm:bg-[position:45%_100%]'
         style={{
           backgroundImage: "url('/bg8.jpg')", 
           backgroundSize: "cover", 
           backgroundRepeat: "no-repeat",
-          opacity: secondBackgroundOpacity,
+          opacity: thirdBackgroundOpacity,
           zIndex: 1,
-          pointerEvents: secondBackgroundPointerEvents
+          pointerEvents: thirdBackgroundPointerEvents
         }}
       />
 
@@ -102,10 +116,10 @@ export default function Home() {
         >
           <motion.div 
             style={{ y: firstSectionY, scale: firstSectionScale, pointerEvents: firstSectionPointerEvents }}
-            className='w-fit flex flex-col relative z-30'
+            className='max-w-xl flex flex-col relative z-30 space-y-4'
           >
             <h1 className={`text-3xl sm:text-6xl roboto-mono`}>Hi, I&apos;m Naman</h1>
-            <p className={`text-lg sm:text-2xl roboto-mono text-gray-400`}>I&apos;m a software engineer based in India</p>
+            <p className={`text-md sm:text-xl roboto-mono text-gray-400`}>Based in India, I specialize in building web and mobile applications that make a difference</p>
             <div className='flex flex-row gap-4 mt-4'>
               <Link href="/about" className='text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer relative'>
                 <p className='text-sm sm:text-lg roboto-mono'>About Me</p>
@@ -129,13 +143,17 @@ export default function Home() {
         >
           <motion.div 
             style={{ scale: secondSectionScale, pointerEvents: secondSectionPointerEvents }}
-            className='max-w-xl flex'
+            className='max-w-2xl flex flex-col gap-4'
           >
-            <p className={`text-lg sm:text-2xl roboto-mono text-gray-300 leading-relaxed`}>
-                nova {'%_'} <span className="text-blue-600">String</span> <span className="text-white text-3xl sm:text-6xl">about</span> = &quot; I&apos;m passionate about building beautiful and functional web applications.
-              With expertise in modern web technologies, I create seamless user experiences
-              that make a difference. &quot;;
-            </p>
+            <div className={`text-md sm:text-xl roboto-mono text-gray-300 leading-relaxed flex flex-col gap-4`}>
+                <p className="text-white text-3xl sm:text-6xl block">About</p>
+                <p className="text-gray-300">
+                I&apos;m a developer with a passion for crafting web and mobile experiences that feel natural, fast, and meaningful. Whether it&apos;s building scalable apps, fine-tuning user flows, or connecting smooth interfaces with efficient backends—I build things that work and feel right.
+                </p>
+                <Link href="/contact" className='text-white w-fit px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 relative'>
+                  <p className='text-sm sm:text-lg roboto-mono'>Learn More</p>
+                </Link>
+            </div>
           </motion.div>
         </motion.div>
 
@@ -152,33 +170,23 @@ export default function Home() {
 
           <motion.div
             style={{ scale: thirdSectionScale, pointerEvents: thirdSectionPointerEvents }}
-            className='max-w-xl flex flex-col gap-6'
+            className='max-w-2xl flex flex-col gap-6'
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col space-y-4">
               <p className={`text-md sm:text-xl roboto-mono text-gray-400`}>
-                nova {'%_'} HashMap{'<'}<span className="text-red-600">String</span>, <span className="text-red-600">String</span>{'>'} <span className="text-white text-3xl sm:text-6xl">education</span> = <span className="text-blue-600">new</span> HashMap();
+                <span className="text-white text-3xl sm:text-6xl">Education</span>
               </p>
-              <p className={`text-xl roboto-mono text-gray-300`}>
-                {'{'}
-              </p>
-              <div className="ml-8 mt-4">
-                <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
-                  university: <span className="text-green-400">&quot;Delhi Technological University&quot;</span>,
-                </p>
-                <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
-                  degree: <span className="text-green-400">&quot;Bachelor of Technology&quot;</span>,
-                </p>
-                <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
-                  major: <span className="text-green-400">&quot;Information Technology&quot;</span>,
-                </p>
-                <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
-                  duration: <span className="text-green-400">&quot;2021 - 2025&quot;</span>,
-                </p>
-                <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
-                  cgpa: <span className="text-green-400">7.5</span>
-                </p>
+              <div className="flex space-x-4">
+                <div className='w-[10px] bg-gray-400 rounded-full'></div>
+                <div className="space-y-4">
+                  <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
+                  I'm currently pursuing my undergraduate studies at Delhi Technological University (DTU), where I’ve built a strong foundation in software engineering, system design, and product thinking.
+                  </p>
+                  <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
+                  Alongside my academics, I've worked on real-world projects, internships, and startup ideas that bridge theory with impact.
+                  </p>
+                </div>
               </div>
-              <p className={`text-md sm:text-xl roboto-mono text-gray-400 mt-4`}>{'}'}</p>
             </div>
           </motion.div>
         </motion.div>

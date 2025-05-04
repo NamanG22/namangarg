@@ -39,6 +39,18 @@ const projects = [
     technologies: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS", "JWT", "HTTP Cookies"],
     link: "https://github.com/NamanG22/Nova-Booking",
     image: "/bg.jpg"
+  },
+  {
+    title: "NewsViews",
+    description: "News Scrolling Application",
+    points: [
+      "Developed the backend for a news video platform with 10,000+ users, with content tailored to individual preferences.", 
+      "Automated video management, removing outdated content to reduce database load by 20%.",
+      "Deployed and hosted the platform, achieving 99.9% uptime and ensuring smooth performance across multiple devices.",
+    ],
+    technologies: ["Java", "Spring Boot", "APIs", "Postman", "Git", "Docker", "Render"],
+    link: "https://github.com/NamanG22/NewsViews",
+    image: "/bg.jpg"
   }
 ]
 
@@ -49,23 +61,33 @@ export default function Projects() {
     offset: ["start start", "end start"]
   });
 
-  const sectionGap = 0.15;
-  const sectionLength = 0.3;
+  const sectionGap = 0.18;
+  const sectionLength = 0.25;
 
   // First section animations - slower fade out
-  const firstSectionOpacity = useTransform(scrollYProgress, [0, sectionLength], [1, 0]);
-  const firstSectionY = useTransform(scrollYProgress, [0, sectionLength], [0, -50]);
-  const firstSectionScale = useTransform(scrollYProgress, [0, sectionLength], [1, 0.8]);
-  const firstSectionPointerEvents = useTransform(scrollYProgress, [0, sectionLength], ["auto", "none"]);
-
-  // Second section animations - more gradual fade in
-  const secondSectionOpacity = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], [0, 1]);
-  const secondSectionYLeft = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], [50, 0]);
-  const secondSectionYRight = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], [50, 0]);
-  const secondSectionScale = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], [0.8, 1]);
-  const secondSectionPointerEvents = useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap], ["none", "auto"]);
-  // const firstBackgroundY = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
-  // const firstBackgroundScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const transitions = [
+    [
+      useTransform(scrollYProgress, [0, sectionLength], [1, 0]),
+      useTransform(scrollYProgress, [0, sectionLength], [0, -50]),
+      useTransform(scrollYProgress, [0, sectionLength], [0, -50]),
+      useTransform(scrollYProgress, [0, sectionLength], [1, 0.8]),
+      useTransform(scrollYProgress, [0, sectionLength], ["auto", "none"])
+    ],
+    [
+      useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap, (3*sectionLength)-sectionGap], [0, 1, 0]),
+      useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap, (3*sectionLength)-sectionGap], [50, 0, -50]),
+      useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap, (3*sectionLength)-sectionGap], [50, 0, -50]),
+      useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap, (3*sectionLength)-sectionGap], [0.8, 1, 0.8]),
+      useTransform(scrollYProgress, [sectionLength-sectionGap,(2*sectionLength)-sectionGap, (3*sectionLength)-sectionGap], ["none", "auto", "none"])
+    ],
+    [
+      useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap),(4*sectionLength)-(2*sectionGap)], [0, 1]),
+      useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap),(4*sectionLength)-(2*sectionGap)], [50, 0]),
+      useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap),(4*sectionLength)-(2*sectionGap)], [50, 0]),
+      useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap),(4*sectionLength)-(2*sectionGap)], [0.8, 1]),
+      useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap),(4*sectionLength)-(2*sectionGap)], ["none", "auto"])
+    ]
+  ];
 
   return (
     <>
@@ -82,19 +104,21 @@ export default function Projects() {
         }}
       />
 
-      <div ref={containerRef} className='min-h-[200vh] relative'> 
+      <div ref={containerRef} className='min-h-[300vh] relative'> 
         <Header />
         {/* First Section */}
-        <motion.div 
-          className='h-screen w-screen fixed top-0 flex items-center justify-left'
+
+        {transitions.map((transition, index) => (
+          <motion.div 
+            className='h-screen w-screen fixed top-0 flex items-center justify-left'
           style={{
-            opacity: firstSectionOpacity,
+            opacity: transition[0],
             zIndex: 20,
-            pointerEvents: firstSectionPointerEvents
+            pointerEvents: transition[4]
           }}
         >
           <motion.div 
-            style={{ y: firstSectionY, scale: firstSectionScale, pointerEvents: firstSectionPointerEvents }}
+            style={{ y: transition[1], scale: transition[3], pointerEvents: transition[4] }}
             className='h-full flex relative z-30 w-[42%]'
           >
           
@@ -105,77 +129,31 @@ export default function Projects() {
             </div>
           </motion.div>
           <motion.div 
-            style={{ y: firstSectionY, scale: firstSectionScale, pointerEvents: firstSectionPointerEvents }}
+            style={{ y: transition[2], scale: transition[3], pointerEvents: transition[4] }}
             className='h-full flex relative z-30 w-[58%]'
           >
             <div className="h-full flex flex-row gap-4 items-center justify-center pr-8">
               <div className="w-full flex flex-col gap-4 border-black rounded-lg p-8 text-white">
-                <h1 className="text-2xl sm:text-5xl roboto-mono">{projects[0].title}</h1>
-                <h2 className="text-md sm:text-xl text-gray-400 roboto-mono">{projects[0].description}</h2>
+                <h1 className="text-2xl sm:text-5xl roboto-mono">{projects[index].title}</h1>
+                <h2 className="text-md sm:text-xl text-gray-400 roboto-mono">{projects[index].description}</h2>
                 <ul className="list-disc ml-4">
-                  {projects[0].points.map((point, index) => (
-                    <li key={index} className="text-sm sm:text-[1rem] text-white/70 roboto-mono">{point}</li>
+                  {projects[index].points.map((point, index2) => (
+                    <li key={index2} className="text-sm sm:text-[1rem] text-white/70 roboto-mono">{point}</li>
                   ))}
                 </ul>
                 <div className="flex flex-row gap-4">
-                  {projects[0].technologies.map((technology, index) => (
-                    <h3 key={index} className="text-sm sm:text-md roboto-mono bg-white/20 px-3 py-1 rounded-full text-white">{technology}</h3>
+                  {projects[index].technologies.map((technology, index2) => (
+                    <h3 key={index2} className="text-sm sm:text-md roboto-mono bg-white/20 px-3 py-1 rounded-full text-white">{technology}</h3>
                   ))}
                 </div>
                 <div className="flex flex-row gap-4 w-full">
-                  <Link href={projects[0].link} className="w-full text-center text-white text-sm sm:text-lg roboto-mono bg-white/20 py-3 rounded-md">View Project</Link>
+                  <Link href={projects[index].link} className="w-full text-center text-white text-sm sm:text-lg roboto-mono bg-white/20 py-3 rounded-md">View Project</Link>
                 </div>
               </div>
             </div>
           </motion.div>
         </motion.div>
-
-        <motion.div 
-          className='h-screen w-screen fixed top-0 flex items-center justify-left'
-          style={{
-            opacity: secondSectionOpacity,
-            zIndex: 20,
-            pointerEvents: secondSectionPointerEvents
-          }}
-        >
-          <motion.div 
-            style={{ y: secondSectionYLeft, scale: secondSectionScale, pointerEvents: secondSectionPointerEvents }}
-            className='h-full flex relative z-30 w-[42%]'
-          >
-            <div className="h-full flex flex-col items-center justify-center p-8">
-              <img src={projects[0].image} alt={projects[0].title} className="w-[80%] object-cover" />
-              <img src={projects[0].image} alt={projects[0].title} className="w-[30%] object-cover -mt-20 self-start ml-5" />
-              <img src={projects[0].image} alt={projects[0].title} className="w-[50%] object-cover -mt-40 self-end" />
-            </div>
-          </motion.div>
-          <motion.div 
-            style={{ y: secondSectionYRight, scale: secondSectionScale, pointerEvents: secondSectionPointerEvents }}
-            className='h-full flex relative z-30  w-[58%]'
-          >
-            <div className="h-full flex flex-row gap-4 items-center justify-center pr-8">
-              <div className="w-full flex flex-col gap-4 border-black rounded-lg p-8 text-white">
-                <h1 className="text-2xl sm:text-5xl roboto-mono">{projects[1].title}</h1>
-                <h2 className="text-md sm:text-xl text-gray-400 roboto-mono">{projects[1].description}</h2>
-                <ul className="list-disc ml-4">
-                  {projects[1].points.map((point, index) => (
-                    <li key={index} className="text-sm sm:text-[1rem] text-white/70 roboto-mono">{point}</li>
-                  ))}
-                </ul>
-                <div className="inline-flex flex-wrap gap-4">
-                  {projects[1].technologies.map((technology, index) => (
-                    <h3 key={index} className="text-sm sm:text-md roboto-mono bg-white/20 px-3 py-1 rounded-full text-white">{technology}</h3>
-                  ))}
-                </div>
-                <div className="flex flex-row gap-4 w-full">
-                  <Link href={projects[1].link} className="w-full text-center text-white text-sm sm:text-lg roboto-mono bg-white/20 py-3 rounded-md">View Project</Link>
-                </div>
-              </div>
-            </div>
-            
-          </motion.div>
-        </motion.div>
-
-
+        ))}
       <Footer />
 
       </div>
