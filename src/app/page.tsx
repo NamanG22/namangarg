@@ -180,10 +180,10 @@ export default function Home() {
                 <div className='w-[10px] bg-gray-400 rounded-full'></div>
                 <div className="space-y-4">
                   <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
-                  I'm currently pursuing my undergraduate studies at Delhi Technological University (DTU), where I’ve built a strong foundation in software engineering, system design, and product thinking.
+                  I&apos;m currently pursuing my undergraduate studies at Delhi Technological University (DTU), where I&apos;ve built a strong foundation in software engineering, system design, and product thinking.
                   </p>
                   <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
-                  Alongside my academics, I've worked on real-world projects, internships, and startup ideas that bridge theory with impact.
+                  Alongside my academics, I&apos;ve worked on real-world projects, internships, and startup ideas that bridge theory with impact.
                   </p>
                 </div>
               </div>

@@ -110,6 +110,7 @@ export default function Projects() {
 
         {transitions.map((transition, index) => (
           <motion.div 
+            key={index}
             className='h-screen w-screen fixed top-0 flex items-center justify-left'
           style={{
             opacity: transition[0],
