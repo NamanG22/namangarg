@@ -13,15 +13,6 @@ import { FaCaretDown } from "react-icons/fa";
 //   subsets: ["latin"],
 // });
 
-const experiences = [
-  {
-    dateStart: "",
-    dateEnd: "Dec 2021",
-    title: "Software Engineer",
-    company: "Google",
-  }
-]
-
 
 export default function Home() {
   const containerRef = useRef(null);
