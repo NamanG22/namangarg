@@ -6,6 +6,10 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import Footer from "./components/Footer";
+import { FaJava, FaPython, FaReact, FaNodeJs, FaNode } from "react-icons/fa";
+import { RiOpenaiFill } from "react-icons/ri";
+
+import { SiGooglegemini, SiMongodb, SiNextdotjs, SiSpringboot } from "react-icons/si";
 
 // const robotoMono = Roboto_Mono({
 //   variable: "--font-roboto-mono",
@@ -43,8 +47,7 @@ const experienceData = [
     duration: "JULY 2024 - AUGUST 2024",
     description:["Collaborated with a team of 5 to develop backend systems using Spring Boot and Firebase, improving data retrieval efficiency by 30% and reducing response time by 25%.",
       "Designed and documented a set of many RESTful APIs that improved efficiency and reduced the need for manual data entry by 40%, allowing focus on higher-value tasks.",
-      "Contributed to the successful deployment, version control and monitoring of backend services in a production environment.",
-      "Created a comprehensive documentation system for data transfer protocols, providing clarity and guidance for 10+ team members, which has led to a 50% reduction inonboarding time for new staff."],
+      "Contributed to the successful deployment, version control and monitoring of backend services in a production environment."],
   },
   {
     id: 5,
@@ -82,8 +85,8 @@ export default function Home() {
 
   const [whichClicked, setWhichClicked] = useState(-1);
 
-  const sectionGap = 0.15;
-  const sectionLength = 0.2;
+  const sectionGap = 0.11;
+  const sectionLength = 0.16;
 
   // First section animations - slower fade out
   const firstSectionOpacity = useTransform(scrollYProgress, [0, sectionLength], [1, 0]);
@@ -103,10 +106,15 @@ export default function Home() {
   const thirdSectionScale = useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap), (4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], [0.8, 1, 0.8]);
   const thirdSectionPointerEvents = useTransform(scrollYProgress, [(3*sectionLength)-(2*sectionGap), (4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], ["none", "auto", "none"]);
 
-  const fourthSectionOpacity = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], [0, 1]);
-  const fourthSectionY = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], [50, 0]);
-  const fourthSectionScale = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], [0.8, 1]);
-  const fourthSectionPointerEvents = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], ["none", "auto"]);
+  const fourthSectionOpacity = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap), (7*sectionLength)-(3*sectionGap)], [0, 1, 0]);
+  const fourthSectionY = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap), (7*sectionLength)-(3*sectionGap)], [50, 0, -50]);
+  const fourthSectionScale = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap), (7*sectionLength)-(3*sectionGap)], [0.8, 1, 0.8]);
+  const fourthSectionPointerEvents = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap), (7*sectionLength)-(3*sectionGap)], ["none", "auto", "none"]);
+
+  const fifthSectionOpacity = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap)], [0, 1]);
+  const fifthSectionY = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap)], [50, 0]);
+  const fifthSectionScale = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap)], [0.8, 1]);
+  const fifthSectionPointerEvents = useTransform(scrollYProgress, [(7*sectionLength)-(4*sectionGap), (8*sectionLength)-(4*sectionGap)], ["none", "auto"]);
 
   const firstBackgroundOpacity = useTransform(scrollYProgress, [(2*sectionLength)-(sectionGap), (3*sectionLength)-(sectionGap), (4*sectionLength)-(sectionGap)], [1, 0, 0]);
   const firstBackgroundPointerEvents = useTransform(scrollYProgress, [(2*sectionLength)-(sectionGap), (3*sectionLength)-(sectionGap), (4*sectionLength)-(sectionGap)], ["auto", "none", "none"]);
@@ -166,7 +174,7 @@ export default function Home() {
         }}
       />
 
-      <div ref={containerRef} className='min-h-[500vh] relative'> 
+      <div ref={containerRef} className='min-h-[700vh] relative'> 
         <Header />
         {/* First Section */}
         <motion.div 
@@ -606,7 +614,117 @@ export default function Home() {
           )}
           </AnimatePresence>
         </motion.div>
-      </motion.div>
+        </motion.div>
+
+        <motion.div 
+          style={{
+            opacity: fifthSectionOpacity,
+            y: fifthSectionY,
+            zIndex: 5,
+            pointerEvents: fifthSectionPointerEvents
+          }}  
+          className='h-screen w-screen flex items-center justify-left px-10 sm:px-28 fixed top-0'
+        >
+
+          <motion.div
+            style={{ scale: fifthSectionScale, pointerEvents: fifthSectionPointerEvents }}
+            className='w-full flex gap-6 items-center'
+          >
+            <div className="max-w-2xl flex flex-col space-y-4">
+              <p className={`text-md sm:text-xl roboto-mono text-gray-400`}>
+                <span className="text-white text-3xl sm:text-6xl">Projects Preview</span>
+              </p>
+              <div className="flex space-x-4">
+                <div className='w-[10px] bg-gray-400 rounded-full'></div>
+                <div className="space-y-4">
+                  <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
+                  I build things that solve real problems—tools, products, and experiments.
+                  </p>
+                  <p className={`text-md sm:text-xl roboto-mono text-gray-300`}>
+                  From full-stack apps with Firebase to fast frontends in React and TypeScript, here’s a glimpse of what I’ve shipped.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+
+              <Link href="/projects" className='text-white w-fit px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 relative'>
+                  <p className='text-sm sm:text-lg roboto-mono'>View All Projects</p>
+                </Link>
+              </div>
+            </div>
+            <div className='w-full flex flex-col gap-4'>
+              <div className='h-[100px] w-full flex items-center justify-between opacity-50 transform scale-70'>
+                <div className='h-full flex flex-col items-start justify-center px-4'>
+                  <h1 className='text-white text-2xl roboto-mono'>Medical Chatbot</h1>
+                  <p className='text-gray-400 text-sm roboto-mono'>A medical chatbot that can answer questions about the human body using Cohere</p>
+                </div>
+                <div className='h-full flex items-center justify-center gap-2'>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <SiMongodb className='text-4xl text-black' />
+                    </div>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <RiOpenaiFill className='text-4xl text-black' />
+                    </div>
+                </div>
+              </div>
+              <div className='h-[100px] w-full flex items-center justify-between opacity-70 transform scale-90'>
+                <div className='h-full flex flex-col items-start justify-center px-4'>
+                  <h1 className='text-white text-2xl roboto-mono'>Website Designs</h1>
+                  <p className='text-gray-400 text-sm roboto-mono'>A collection of stunning website designs</p>
+                </div>
+                <div className='h-full flex items-center justify-center gap-2'>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <SiNextdotjs className='text-4xl text-black' />
+                    </div>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <FaReact className='text-4xl text-black' />
+                    </div>
+                </div>
+              </div>
+              <div className='h-[100px] w-full flex items-center justify-between'>
+                <div className='h-full flex flex-col items-start justify-center px-4'>
+                  <h1 className='text-white text-2xl roboto-mono'>Speech to Text</h1>
+                  <p className='text-gray-400 text-sm roboto-mono'>A custom speech-to-text converter leveraging Google Generative Model Gemini-1.5-flash</p>
+                </div>
+                <div className='h-full flex items-center justify-center gap-2'>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <FaPython className='text-4xl text-black' />
+                    </div>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <SiGooglegemini className='text-4xl text-black' />
+                    </div>
+                </div>
+              </div>
+              <div className='h-[100px] w-full px-4 space-x-4 rounded-lg flex items-center justify-between opacity-70 transform scale-90'>
+                <div className='h-full flex flex-col items-start justify-center'>
+                  <h1 className='text-white text-2xl roboto-mono'>Hotel Booking System</h1>
+                  <p className='text-gray-400 text-sm roboto-mono'>Enterprise-level Hotel Booking Application</p>
+                </div>
+                <div className='h-full flex items-center justify-center gap-2'>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <FaReact className='text-4xl text-black' />
+                    </div>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <FaNode className='text-4xl text-black' />
+                    </div>
+                </div>
+              </div>
+              <div className='h-[100px] w-full px-4 space-x-4 rounded-lg flex items-center justify-between opacity-50 transform scale-70'>
+                <div className='h-full flex flex-col items-start justify-center'>
+                  <h1 className='text-white text-2xl roboto-mono'>News Aggregator</h1>
+                  <p className='text-gray-400 text-sm roboto-mono'>A news scrolling application that displays news articles from around the world</p>
+                </div>
+                <div className='h-full flex items-center justify-center gap-2'>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <FaJava className='text-4xl text-black' />
+                    </div>
+                    <div className='flex items-center justify-center rounded-full bg-white p-2'>
+                        <SiSpringboot className='text-4xl text-black' />
+                    </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
 
       <Footer />
 

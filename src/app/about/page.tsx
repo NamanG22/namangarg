@@ -2,10 +2,10 @@
 // import { Dancing_Script, Roboto_Mono } from "next/font/google";
 import Header from "../components/Header";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Footer from "../components/Footer";
 import { SiComma } from "react-icons/si";
-import { FaJava } from "react-icons/fa";
+import { FaArrowUp, FaJava } from "react-icons/fa";
 import { FaPython } from "react-icons/fa";
 import { FaHtml5 } from "react-icons/fa";
 import { FaCss3Alt } from "react-icons/fa";
@@ -30,20 +30,69 @@ import { SiJupyter } from "react-icons/si";
 import { SiGooglegemini } from "react-icons/si";
 import { RiOpenaiFill } from "react-icons/ri";
 
+
 // const dancingScript = Dancing_Script({
 //   variable: "--font-dancing-script",
 //   subsets: ["latin"],
 // });
 
 export default function About() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress, scrollY } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
   const sectionGap = 0.078;
   const sectionLength = 0.128;
+
+  const scrollToSection = (sectionIndex: number) => {
+    // Get the container element using the ref
+    const container = containerRef.current;
+    if (!container) return;
+    
+    // Calculate the total height of the container
+    const containerHeight = container.getBoundingClientRect().height;
+    
+    // Calculate the target progress value based on the section animations
+    let targetProgress;
+    switch(sectionIndex) {
+      case 0:
+        targetProgress = 0;
+        break;
+      case 1:
+        targetProgress = (2*sectionLength) - sectionGap;
+        break;
+      case 2:
+        targetProgress = (4*sectionLength) - (2*sectionGap);
+        break;
+      case 3:
+        targetProgress = (6*sectionLength) - (3*sectionGap);
+        break;
+      case 4:
+        targetProgress = (8*sectionLength) - (4*sectionGap);
+        break;
+      case 5:
+        targetProgress = (10*sectionLength) - (5*sectionGap);
+        break;
+      default:
+        targetProgress = 0;
+    }
+    
+    // Convert progress to actual pixels
+    const targetScroll = targetProgress * containerHeight;
+
+    window.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth'
+    });
+  };
+
+  const [selectedHobby, setSelectedHobby] = useState(-1);
+
+  const handleHobbyClick = (index: number) => {
+    setSelectedHobby(index);
+  };
 
   // First section animations - slower fade out
   const firstSectionOpacity = useTransform(scrollYProgress, [0, sectionLength], [1, 0]);
@@ -104,10 +153,19 @@ export default function About() {
         }}
       />
 
-      <div ref={containerRef} className='min-h-[900vh] relative'> 
+      <div ref={containerRef} className='min-h-[950vh] relative'> 
         <Header />
+        <div className="fixed bottom-16 right-16 z-150 hover:cursor-pointer opacity-50">
+          <button
+            className="bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded-full hover:bg-opacity-20 transition-all duration-300 hover:cursor-pointer"
+            onClick={() => scrollToSection(0)}
+          >
+            <FaArrowUp className="text-2xl text-black" />
+          </button>
+        </div>
         {/* First Section */}
         <motion.div 
+          id="hero-section"
           className='h-screen w-screen fixed top-0 flex items-center justify-center px-28 py-28'
           style={{
             opacity: firstSectionOpacity,
@@ -117,23 +175,149 @@ export default function About() {
         >
           <motion.div 
             style={{ y: firstSectionY, scale: firstSectionScale, pointerEvents: firstSectionPointerEvents }}
-            className='w-full flex flex-col relative z-30 items-center justify-center'
+            className='w-full flex relative z-30 items-center justify-between'
           >
-            <h1 className={`text-6xl roboto-mono`}>About Me</h1>
-            <p className={`text-2xl roboto-mono text-gray-400`}>I&apos;m a software engineer based in India</p>
-            {/* <div className='flex flex-row gap-4 mt-4'>
-              <Link href="/about" className='text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer relative'>
-                <p className='roboto-mono'>About Me</p>
-              </Link>
-              <Link href="/contact" className='text-white px-4 py-2 rounded-lg border border-white hover:bg-white hover:text-black transition-all duration-300 cursor-pointer relative'>
-                <p className='roboto-mono'>Get in touch</p>
-              </Link>
-            </div> */}
+            <div className='flex flex-col items-end justify-center gap-2 opacity-0'>
+              <div className='flex items-center justify-center gap-2 hover:cursor-pointer'>
+                <p>Hero</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Hero</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div className='flex items-center justify-center gap-2 hover:cursor-pointer'>
+                <p>Story</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Story</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div className='flex items-center justify-center gap-2 hover:cursor-pointer'>
+                <p>Quote</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Quote</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div className='flex items-center justify-center gap-2 hover:cursor-pointer'>
+                <p>Skills</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Skills</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div className='flex items-center justify-center gap-2 hover:cursor-pointer'>
+                <p>Achievements</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Achievements</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div className='flex items-center justify-center gap-2 hover:cursor-pointer'>
+                <p>Hobbies</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              
+            </div>
+            <div className='flex flex-col items-center justify-center gap-2'>
+              <h1 className={`text-6xl roboto-mono`}>About Me</h1>
+              <p className={`text-2xl roboto-mono text-gray-400`}>I&apos;m a software engineer based in India</p>
+            </div>
+            <div className='flex flex-col items-end justify-center gap-2 opacity-50'>
+              <div 
+                className='flex items-center justify-center gap-2 hover:cursor-pointer hover:opacity-100 transition-opacity duration-300'
+                onClick={() => scrollToSection(0)}
+              >
+                <p>Hero</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Hero</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div 
+                className='flex items-center justify-center gap-2 hover:cursor-pointer hover:opacity-100 transition-opacity duration-300'
+                onClick={() => scrollToSection(1)}
+              >
+                <p>Story</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Story</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div 
+                className='flex items-center justify-center gap-2 hover:cursor-pointer hover:opacity-100 transition-opacity duration-300'
+                onClick={() => scrollToSection(2)}
+              >
+                <p>Quote</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Quote</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div 
+                className='flex items-center justify-center gap-2 hover:cursor-pointer hover:opacity-100 transition-opacity duration-300'
+                onClick={() => scrollToSection(3)}
+              >
+                <p>Skills</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Skills</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div 
+                className='flex items-center justify-center gap-2 hover:cursor-pointer hover:opacity-100 transition-opacity duration-300'
+                onClick={() => scrollToSection(4)}
+              >
+                <p>Achievements</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+              <div className='flex items-center justify-center gap-2'>
+                <p className='opacity-0'>Achievements</p>
+                <div className='w-4 h-4 flex items-center justify-center'>
+                  <div className='w-[1px] h-[50px] bg-gray-400'></div>
+                </div>
+              </div>
+              <div 
+                className='flex items-center justify-center gap-2 hover:cursor-pointer hover:opacity-100 transition-opacity duration-300'
+                onClick={() => scrollToSection(5)}
+              >
+                <p>Hobbies</p>
+                <div className='w-4 h-4 rounded-full bg-white'></div>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
 
         {/* Second section */}
         <motion.div 
+          id="story-section"
           style={{
             opacity: secondSectionOpacity,
             y: secondSectionY,
@@ -147,27 +331,26 @@ export default function About() {
             className='w-full space-y-16 flex flex-col justify-center items-center px-24'
           >
             <div className='flex w-full text-center'>
-                <p className='text-md roboto-mono'>Hi, I&apos;m Naman, a passionate Software Engineer with a strong foundation in Computer Science. Currently, I&apos;m a final-year student at Delhi Technological University (DTU) majoring in Information Technology.</p>
+                <p className='text-md roboto-mono'>Hi, I&apos;m Naman. A final-year Information Technology student at Delhi Technological University, and a passionate software engineer building web & mobile products that matter.</p>
             </div>
             <div className='flex w-full'>
                 <div className='w-1/2'>
                 </div>
                 <div className='w-1/2'>
-                    <p className='text-md roboto-mono'>Ever since I wrote my first &quot;Hello World&quot; program, I&apos;ve been captivated by the endless possibilities technology can unlock. I love working on projects that challenge me to grow and innovate.</p>
+                    <p className='text-md roboto-mono'>Ever since my first &quot;Hello, World&quot;, I&apos;ve been hooked on how software can transform ideas into real-world impact. I gravitate toward projects that push me to learn, iterate, and innovate.</p>
                 </div>
             </div>
             <div className='flex w-full'>
                 <div className='w-1/2'>
                     <p className='text-md roboto-mono'>
-                    Beyond coding, I enjoy sharing knowledge — mentoring juniors, writing blogs, and sometimes teaching mathematics, which has strengthened my problem-solving mindset even further.
+                    When I&apos;m not coding, you&apos;ll find me mentoring juniors, writing technical blogs, or breaking down math puzzles—activities that sharpen my problem-solving and help me give back.
                     </p>
                 </div>
                 <div className='w-1/2'>
                 </div>
             </div>
             <div className='flex w-full text-center'>
-                <p className='text-md roboto-mono'>I&apos;m always eager to collaborate on exciting projects, learn new technologies, and contribute to impactful solutions.
-                If you&apos;d like to work together, feel free to reach out through my contact page! </p>
+                <p className='text-md roboto-mono'>I&apos;m always looking to team up on exciting challenges, explore emerging technologies, and deliver user-centric solutions.</p>
             </div>
             
           </motion.div>
@@ -175,6 +358,7 @@ export default function About() {
 
         {/* Third section */}
         <motion.div 
+          id="quote-section"
           style={{
             opacity: thirdSectionOpacity,
             y: thirdSectionY,
@@ -195,10 +379,10 @@ export default function About() {
                         <SiComma className='text-2xl transform rotate-180'/>
                 </div>
                 <p className={`text-3xl roboto-mono-italic flex pl-12 pr-4`}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam assumenda odio temporibus iure distinctio tempora ab corrupti!
+                Every time I was overwhelmed—by pain, overthinking, or emotions—I chose to build. My projects aren&apos;t just work; they&apos;re reflections of the moments I survived.
                 </p>
                 <p className='text-md roboto-mono flex pl-12 text-gray-400'>
-                    Naman Garg, forever in beta
+                    - Naman Garg, forever in beta
                 </p>
                 <div className='flex -space-x-3 w-full justify-end'>
                         <SiComma className='text-2xl'/>
@@ -214,6 +398,7 @@ export default function About() {
 
         {/* Fourth section */}
         <motion.div 
+          id="skills-section"
           style={{
             opacity: fourthSectionOpacity,
             y: fourthSectionY,
@@ -229,7 +414,7 @@ export default function About() {
           >
             <div className='text-white w-full text-center'>
                 <h1 className='text-6xl roboto-mono'>Skills & Technologies</h1>
-                <p className='text-2xl roboto-mono text-gray-400'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos</p>
+                <p className='text-2xl roboto-mono text-gray-400'>Languages, libraries, and frameworks that help me turn caffeine into code.</p>
             </div>
 
             <div className='flex flex-row gap-6 justify-center items-center'>
@@ -389,6 +574,7 @@ export default function About() {
 
         {/* Fifth section */}
         <motion.div 
+          id="achievements-section"
           style={{
             opacity: fifthSectionOpacity,
             y: fifthSectionY,
@@ -400,17 +586,40 @@ export default function About() {
 
           <motion.div
             style={{ scale: fifthSectionScale, pointerEvents: fifthSectionPointerEvents }}
-            className='flex flex-col w-full space-y-6'
+            className='flex flex-col w-full space-y-6 items-center justify-center'
           >
             <div className='text-white w-full text-center'>
                 <h1 className='text-6xl roboto-mono'>Achievements / Certifications</h1>
-                <p className='text-2xl roboto-mono text-gray-400'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos</p>
+                <p className='text-2xl roboto-mono text-gray-400'>Proof that persistence pays off—and learning never stops.</p>
+            </div>
+            <div className='text-white w-full flex overflow-hidden -space-x-44 items-center justify-center'>
+                <iframe src="/cert/java_basic.pdf" className='h-[230px] hover:z-10' />
+                <iframe src="/cert/problem_solving_basic.pdf" className='h-[230px] hover:z-10' />
+                <iframe src="/cert/NaukriCampus_Certificate_Participation.pdf" className='h-[230px] hover:z-10' />
+                <iframe src="/cert/FlipkartGrid5.0.pdf" className='h-[213px] hover:z-10' />
+                <iframe src="/cert/CoPHackOnAmazonSeason-4.pdf" className='h-[213px] hover:z-10' />
+                <iframe src="/cert/Coding_Ninjas - Ninja_Slayground.pdf" className='h-[230px] hover:z-10' />
+                <iframe src="/cert/Codekaze-Round1.pdf" className='h-[230px] hover:z-10' />
+                <iframe src="/cert/Codekaze-Round2.pdf" className='h-[230px] hover:z-10' />
+            </div>
+            <div className='text-white w-full text-left flex items-center justify-between'>
+              <ul className='flex flex-col list-disc'>
+                <li className='text-lg roboto-mono'>Solved 600+ DSA questions on LeetCode, CNStudio, and geeksforgeeks.</li>
+                <li className='text-lg roboto-mono'> 1557 Rating on LeetCode, 1093 - Institute Ranking on GFG among 11262 Students. </li>
+                <li className='text-lg roboto-mono'>Rank - 2 in a State Level Mathematics Olympiad.</li>
+              </ul>
+              <div className="h-full flex flex-col items-center justify-center">
+                <img src="/achievements/lc.png" alt="lc" className="h-[200px] object-cover" />
+                <img src="/achievements/gfg.png" alt="gfg" className="h-[150px] object-cover -mt-30 -translate-x-10" />
+                <img src="/achievements/maths.jpg" alt="maths" className="h-[200px] object-cover -mt-54 translate-x-30" />
+              </div>
             </div>
           </motion.div>
         </motion.div>
 
         {/* Sixth section */}
         <motion.div 
+          id="hobbies-section"
           style={{
             opacity: sixthSectionOpacity,
             y: sixthSectionY,
@@ -422,11 +631,39 @@ export default function About() {
 
           <motion.div
             style={{ scale: sixthSectionScale, pointerEvents: sixthSectionPointerEvents }}
-            className='flex flex-col w-full space-y-6'
+            className='flex flex-col w-full space-y-6 justify-center items-center h-full'
           >
-            <div className='text-white w-full text-center'>
+            <div className='text-white w-full text-center self-top self-start'>
                 <h1 className='text-6xl roboto-mono'>Hobbies</h1>
-                <p className='text-2xl roboto-mono text-gray-400'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos</p>
+                <p className='text-2xl roboto-mono text-gray-400'>A peek into the things I enjoy when I&apos;m not building or debugging.</p>
+            </div>
+            <div className='flex w-full items-center h-[450px] justify-between'>
+              <div className='flex flex-col items-center justify-center w-[350px] space-y-4'>
+                <div className='flex flex-col items-center justify-center rounded-lg p-2 py-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300' onClick={() => handleHobbyClick(0)}>
+                  <h1 className='text-2xl roboto-mono'>Stargazing & Astronomy</h1>
+                  <p className='text-sm roboto-mono text-center'>Endlessly curious about the universe—stars, black holes, and everything in between.</p>
+                </div>
+                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300' onClick={() => handleHobbyClick(1)}>
+                  <h1 className='text-2xl roboto-mono'>Drawing & Sketching</h1>
+                  <p className='text-sm roboto-mono text-center'>Sketching helps me unwind and express ideas beyond code.</p>
+                </div>
+              </div>
+              <div className='flex flex-col items-center justify-center'>
+                <img src="/hobbies/space.jpg" alt="space" className={`absolute h-[300px] object-cover z-0`} />
+                <img src="/hobbies/sketch.jpg" alt="sketch" className={`absolute h-[350px] object-cover z-0`} />
+                <img src="/hobbies/music.jpg" alt="music" className={`absolute h-[320px] object-cover z-0`} />
+                <img src="/hobbies/manga.jpg" alt="manga" className={`absolute h-[300px] object-cover z-0`} />
+              </div>
+              <div className='flex flex-col items-center justify-center w-[350px] space-y-4'>
+                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300' onClick={() => handleHobbyClick(2)}>
+                  <h1 className='text-2xl roboto-mono'>Music & Mood</h1>
+                  <p className='text-sm roboto-mono text-center'>From lo-fi to rock—music fuels my focus and creativity.</p>
+                </div>
+                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300' onClick={() => handleHobbyClick(3)}>
+                  <h1 className='text-2xl roboto-mono'>Anime & Storytelling</h1>
+                  <p className='text-sm roboto-mono text-center'>A huge fan of thoughtful plots, great animation, and unforgettable characters.</p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </motion.div>

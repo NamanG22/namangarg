@@ -2,6 +2,8 @@ import { FaGithub } from "react-icons/fa";
 
 import { FaTwitter } from "react-icons/fa";
 
+import { FaXTwitter } from "react-icons/fa6";
+
 
 import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
@@ -17,8 +19,8 @@ export default function Footer() {
                 <Link href="https://github.com/NamanG22" target="_blank" className="hover:scale-110 transition-transform">
                     <FaGithub className='text-white w-5 h-5' />
                 </Link>
-                <Link href="https://twitter.com/naman_kumar_s" target="_blank" className="hover:scale-110 transition-transform">
-                    <FaTwitter className='text-white w-5 h-5' />
+                <Link href="https://x.com/NamanG2203" target="_blank" className="hover:scale-110 transition-transform">
+                    <FaXTwitter className='text-white w-5 h-5' />
                 </Link>
                 <Link href="https://www.linkedin.com/in/namangarg22/" target="_blank" className="hover:scale-110 transition-transform">
                     <FaLinkedin className='text-white w-5 h-5' />
