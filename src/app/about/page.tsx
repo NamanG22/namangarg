@@ -38,7 +38,7 @@ import { RiOpenaiFill } from "react-icons/ri";
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress, scrollY } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
@@ -86,12 +86,6 @@ export default function About() {
       top: targetScroll,
       behavior: 'smooth'
     });
-  };
-
-  const [selectedHobby, setSelectedHobby] = useState(-1);
-
-  const handleHobbyClick = (index: number) => {
-    setSelectedHobby(index);
   };
 
   // First section animations - slower fade out
@@ -639,11 +633,11 @@ export default function About() {
             </div>
             <div className='flex w-full items-center h-[450px] justify-between'>
               <div className='flex flex-col items-center justify-center w-[350px] space-y-4'>
-                <div className='flex flex-col items-center justify-center rounded-lg p-2 py-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300' onClick={() => handleHobbyClick(0)}>
+                <div className='flex flex-col items-center justify-center rounded-lg p-2 py-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300'>
                   <h1 className='text-2xl roboto-mono'>Stargazing & Astronomy</h1>
                   <p className='text-sm roboto-mono text-center'>Endlessly curious about the universe—stars, black holes, and everything in between.</p>
                 </div>
-                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300' onClick={() => handleHobbyClick(1)}>
+                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300'>
                   <h1 className='text-2xl roboto-mono'>Drawing & Sketching</h1>
                   <p className='text-sm roboto-mono text-center'>Sketching helps me unwind and express ideas beyond code.</p>
                 </div>
@@ -655,11 +649,11 @@ export default function About() {
                 <img src="/hobbies/manga.jpg" alt="manga" className={`absolute h-[300px] object-cover z-0`} />
               </div>
               <div className='flex flex-col items-center justify-center w-[350px] space-y-4'>
-                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300' onClick={() => handleHobbyClick(2)}>
+                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300'>
                   <h1 className='text-2xl roboto-mono'>Music & Mood</h1>
                   <p className='text-sm roboto-mono text-center'>From lo-fi to rock—music fuels my focus and creativity.</p>
                 </div>
-                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300' onClick={() => handleHobbyClick(3)}>
+                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300'>
                   <h1 className='text-2xl roboto-mono'>Anime & Storytelling</h1>
                   <p className='text-sm roboto-mono text-center'>A huge fan of thoughtful plots, great animation, and unforgettable characters.</p>
                 </div>

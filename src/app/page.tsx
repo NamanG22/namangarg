@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import Footer from "./components/Footer";
-import { FaJava, FaPython, FaReact, FaNodeJs, FaNode } from "react-icons/fa";
+import { FaJava, FaPython, FaReact, FaNode } from "react-icons/fa";
 import { RiOpenaiFill } from "react-icons/ri";
 
 import { SiGooglegemini, SiMongodb, SiNextdotjs, SiSpringboot } from "react-icons/si";
