@@ -29,6 +29,12 @@ import { PiBracketsCurly } from "react-icons/pi";
 import { SiJupyter } from "react-icons/si";
 import { SiGooglegemini } from "react-icons/si";
 import { RiOpenaiFill } from "react-icons/ri";
+import { IoIosMusicalNotes } from "react-icons/io";
+import { MdGamepad } from "react-icons/md";
+import { HiPuzzlePiece } from "react-icons/hi2";
+import { FaCode } from "react-icons/fa6";
+import { IoBug } from "react-icons/io5";
+import { MdOutlineKeyboardCommandKey } from "react-icons/md";
 
 
 // const dancingScript = Dancing_Script({
@@ -120,14 +126,6 @@ export default function About() {
   const sixthSectionY = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap)], [50, 0]);
   const sixthSectionScale = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap)], [0.8, 1]);
   const sixthSectionPointerEvents = useTransform(scrollYProgress, [(9*sectionLength)-(5*sectionGap), (10*sectionLength)-(5*sectionGap)], ["none", "auto"]);
-
-//   const firstBackgroundOpacity = useTransform(scrollYProgress, [(4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], [1, 0]);
-//   const firstBackgroundPointerEvents = useTransform(scrollYProgress, [(4*sectionLength)-(2*sectionGap), (5*sectionLength)-(2*sectionGap)], ["auto", "none"]);
-
-//   const secondBackgroundOpacity = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], [0, 1]);
-//   const secondBackgroundPointerEvents = useTransform(scrollYProgress, [(5*sectionLength)-(3*sectionGap), (6*sectionLength)-(3*sectionGap)], ["none", "auto"]);
-  // const firstBackgroundY = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
-  // const firstBackgroundScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
   return (
     <>
@@ -328,7 +326,16 @@ export default function About() {
                 <p className='text-md roboto-mono'>Hi, I&apos;m Naman. A final-year Information Technology student at Delhi Technological University, and a passionate software engineer building web & mobile products that matter.</p>
             </div>
             <div className='flex w-full'>
-                <div className='w-1/2'>
+                <div className='w-1/2 flex space-x-4 justify-between px-12'>
+                  <div className='flex items-center justify-center rounded-full p-4'>
+                      <FaCode className='text-6xl text-white w-20 h-20' />
+                  </div>
+                  <div className='flex items-center justify-center rounded-full p-4'>
+                      <IoBug className='text-6xl text-white w-20 h-20' />
+                  </div>
+                  <div className='flex items-center justify-center rounded-full p-4'>
+                      <MdOutlineKeyboardCommandKey className='text-6xl text-white w-20 h-20' />
+                  </div>
                 </div>
                 <div className='w-1/2'>
                     <p className='text-md roboto-mono'>Ever since my first &quot;Hello, World&quot;, I&apos;ve been hooked on how software can transform ideas into real-world impact. I gravitate toward projects that push me to learn, iterate, and innovate.</p>
@@ -340,7 +347,16 @@ export default function About() {
                     When I&apos;m not coding, you&apos;ll find me mentoring juniors, writing technical blogs, or breaking down math puzzles—activities that sharpen my problem-solving and help me give back.
                     </p>
                 </div>
-                <div className='w-1/2'>
+                <div className='w-1/2 flex space-x-4 justify-between px-12'>
+                  <div className='flex items-center justify-center rounded-full p-4'>
+                      <IoIosMusicalNotes className='text-6xl text-white w-20 h-20' />
+                  </div>
+                  <div className='flex items-center justify-center rounded-full p-4'>
+                      <MdGamepad className='text-6xl text-white w-20 h-20' />
+                  </div>
+                  <div className='flex items-center justify-center rounded-full p-4'>
+                      <HiPuzzlePiece className='text-6xl text-white w-20 h-20' />
+                  </div>
                 </div>
             </div>
             <div className='flex w-full text-center'>
@@ -366,7 +382,7 @@ export default function About() {
             style={{ scale: thirdSectionScale, pointerEvents: thirdSectionPointerEvents }}
             className='flex w-full'
           >
-            <div className="flex">
+            <div className="flex items-center justify-center">
               <div className='w-1/2 flex flex-col space-y-4'>
                 <div className='flex -space-x-3'>
                         <SiComma className='text-2xl transform rotate-180'/>
@@ -383,8 +399,10 @@ export default function About() {
                         <SiComma className='text-2xl'/>
                 </div>
               </div>
-              <div className='w-1/2'>
-                
+              <div className='w-1/2 flex items-center justify-center'>
+                <img src="/ghibli_me.png" alt="naman" className="h-[320px] object-cover translate-x-[50px] translate-y-[-100px]" />
+                <img src="/balcony_me.png" alt="naman" className="h-[320px] object-cover z-2" />
+                <img src="/office_me.jpeg" alt="naman" className="h-[320px] object-cover translate-x-[-50px] translate-y-[100px]" />
               </div>
             </div>
           </motion.div>
@@ -633,11 +651,11 @@ export default function About() {
             </div>
             <div className='flex w-full items-center h-[450px] justify-between'>
               <div className='flex flex-col items-center justify-center w-[350px] space-y-4'>
-                <div className='flex flex-col items-center justify-center rounded-lg p-2 py-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300'>
+                <div className='flex flex-col items-center justify-center rounded-lg p-2 py-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300'>
                   <h1 className='text-2xl roboto-mono'>Stargazing & Astronomy</h1>
                   <p className='text-sm roboto-mono text-center'>Endlessly curious about the universe—stars, black holes, and everything in between.</p>
                 </div>
-                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300'>
+                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300'>
                   <h1 className='text-2xl roboto-mono'>Drawing & Sketching</h1>
                   <p className='text-sm roboto-mono text-center'>Sketching helps me unwind and express ideas beyond code.</p>
                 </div>
@@ -649,11 +667,11 @@ export default function About() {
                 <img src="/hobbies/manga.jpg" alt="manga" className={`absolute h-[300px] object-cover z-0`} />
               </div>
               <div className='flex flex-col items-center justify-center w-[350px] space-y-4'>
-                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300'>
+                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300'>
                   <h1 className='text-2xl roboto-mono'>Music & Mood</h1>
                   <p className='text-sm roboto-mono text-center'>From lo-fi to rock—music fuels my focus and creativity.</p>
                 </div>
-                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:cursor-pointer hover:bg-white hover:text-black transition-all duration-300'>
+                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300'>
                   <h1 className='text-2xl roboto-mono'>Anime & Storytelling</h1>
                   <p className='text-sm roboto-mono text-center'>A huge fan of thoughtful plots, great animation, and unforgettable characters.</p>
                 </div>
