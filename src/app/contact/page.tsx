@@ -33,7 +33,7 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      await response.json();
 
       if (response.ok) {
         setStatus('success');
@@ -42,6 +42,7 @@ export default function Contact() {
         setStatus('error');
       }
     } catch (error) {
+      console.error('Error sending message:', error);
       setStatus('error');
     }
   };

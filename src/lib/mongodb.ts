@@ -6,24 +6,17 @@ if (!process.env.MONGODB_URI) {
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-interface GlobalMongoose {
-  isConnected?: boolean;
-}
-
-declare global {
-  var mongoose: GlobalMongoose;
-}
-
-global.mongoose = global.mongoose || {};
+let isConnected = false;
 
 async function connectDB() {
-  if (global.mongoose.isConnected) {
+  if (isConnected) {
     return;
   }
 
   try {
     await mongoose.connect(MONGODB_URI!);
-    global.mongoose.isConnected = true;
+    isConnected = true;
+    console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
     throw error;
