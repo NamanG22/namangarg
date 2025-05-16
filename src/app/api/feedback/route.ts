@@ -1,25 +1,27 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import { Feedback, FeedbackStats } from '@/types';
+import { Document, UpdateFilter, ObjectId } from 'mongodb';
 
 export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db('portfolio');
+    const collection = db.collection<FeedbackStats>('feedback');
     
-    const stats = await db.collection('feedback').findOne({}) as unknown as FeedbackStats;
+    const stats = await collection.findOne({});
     
     if (!stats) {
       // Initialize feedback stats if they don't exist
-      const initialStats: FeedbackStats = {
+      const initialStats: Omit<FeedbackStats, '_id'> = {
         totalLikes: 0,
         totalDislikes: 0,
         totalFeedbacks: 0,
         feedbacks: []
       };
       
-      await db.collection('feedback').insertOne(initialStats as any);
-      return NextResponse.json(initialStats);
+      const result = await collection.insertOne(initialStats);
+      return NextResponse.json({ ...initialStats, _id: result.insertedId });
     }
     
     return NextResponse.json(stats);
@@ -33,28 +35,29 @@ export async function POST(request: Request) {
   try {
     const client = await clientPromise;
     const db = client.db('portfolio');
+    const collection = db.collection<FeedbackStats>('feedback');
     
-    const feedback: Feedback = await request.json();
-    feedback.timestamp = new Date();
+    const feedback: Omit<Feedback, 'timestamp'> = await request.json();
+    const feedbackWithTimestamp = { ...feedback, timestamp: new Date() };
     
-    const updateOperation = {
+    const updateOperation: UpdateFilter<FeedbackStats> = {
       $inc: {
         totalLikes: feedback.isLike ? 1 : 0,
         totalDislikes: feedback.isLike ? 0 : 1,
         totalFeedbacks: 1
       },
       $push: {
-        feedbacks: feedback
+        feedbacks: feedbackWithTimestamp
       }
     };
     
-    const result = await db.collection('feedback').updateOne(
+    await collection.updateOne(
       {}, // Update the first document
-      updateOperation as any,
-      { upsert: true } // Create if doesn't exist
+      updateOperation,
+      { upsert: true }
     );
     
-    const updatedStats = await db.collection('feedback').findOne({}) as unknown as FeedbackStats;
+    const updatedStats = await collection.findOne({});
     return NextResponse.json(updatedStats);
   } catch (error) {
     console.error('Database Error:', error);

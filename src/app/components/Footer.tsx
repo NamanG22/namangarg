@@ -6,7 +6,6 @@ import { FaLinkedin } from "react-icons/fa";
 import { useState, useRef, useEffect } from 'react';
 import FeedbackPopup from './FeedbackPopup';
 import { motion } from 'framer-motion';
-import { Feedback } from '@/types';
 
 export default function Footer() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);

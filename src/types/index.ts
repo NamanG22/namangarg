@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 export interface Feedback {
   isLike: boolean;
   message: string;
@@ -5,7 +7,7 @@ export interface Feedback {
 }
 
 export interface FeedbackStats {
-  _id?: string;
+  _id?: ObjectId;
   totalLikes: number;
   totalDislikes: number;
   totalFeedbacks: number;
