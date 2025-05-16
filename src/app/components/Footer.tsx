@@ -3,19 +3,50 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoMdThumbsDown, IoMdThumbsUp } from "react-icons/io";
 import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import FeedbackPopup from './FeedbackPopup';
 import { motion } from 'framer-motion';
+import { Feedback } from '@/types';
 
 export default function Footer() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [likesCount, setLikesCount] = useState(0);
     const thumbsRef = useRef<HTMLDivElement>(null);
 
+    useEffect(() => {
+        // Fetch initial feedback stats
+        const fetchFeedbackStats = async () => {
+            try {
+                const response = await fetch('/api/feedback');
+                if (response.ok) {
+                    const data = await response.json();
+                    setLikesCount(data.totalLikes || 0);
+                }
+            } catch (error) {
+                console.error('Failed to fetch feedback stats:', error);
+            }
+        };
+
+        fetchFeedbackStats();
+    }, []);
+
     const handleFeedbackSubmit = async (feedback: { isLike: boolean; message: string }) => {
-        console.log('Feedback submitted:', feedback);
-        if (feedback.isLike) {
-            setLikesCount(prev => prev + 1);
+        try {
+            const response = await fetch('/api/feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(feedback),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setLikesCount(data.totalLikes);
+                setIsPopupOpen(false);
+            }
+        } catch (error) {
+            console.error('Failed to submit feedback:', error);
         }
     };
 
