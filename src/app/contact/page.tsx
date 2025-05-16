@@ -1,10 +1,9 @@
 'use client'
 
 import Header from "../components/Header";
-
 import Footer from "../components/Footer";
-import { useRef } from "react";
-import { motion} from "framer-motion";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaGithub, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -14,6 +13,46 @@ import { IoCloudUpload } from "react-icons/io5";
 
 export default function Contact() {
   const containerRef = useRef(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   return (
     <>
@@ -63,13 +102,48 @@ export default function Contact() {
                 <div className="flex flex-col min-h-screen w-2/5 pb-40 items-center justify-center px-10">
                   <div className="bg-white flex-1 flex flex-col space-y-8 items-center justify-center w-full text-black rounded-b-lg">
                     <h1 className={`text-2xl sm:text-2xl roboto-mono w-full text-start px-8`}>Contact Me</h1>
-                    <form action="" className="flex flex-col items-center justify-center w-full gap-12 px-8 text-black">
-                        <input type="text" placeholder="Name" className="w-full border-b border-black placeholder:text-black focus:outline-none roboto-mono"  />
-                        <input type="email" placeholder="E-mail" className="w-full border-b border-black placeholder:text-black focus:outline-none roboto-mono" />
-                        <input type="text" name="message" id="message" placeholder="Message" className="w-full border-b border-black placeholder:text-black focus:outline-none roboto-mono"></input>
+                    {status === 'success' && (
+                      <div className="text-green-600 roboto-mono px-8 py-4 w-full self-center bg-black">Message sent successfully!</div>
+                    )}
+                    {status === 'error' && (
+                      <div className="text-red-600 roboto-mono px-8 py-4 w-full self-center bg-black">Failed to send message. <br /> Please try again.</div>
+                    )}
+                    <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center w-full gap-12 px-8 text-black">
+                        <input 
+                          type="text" 
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder="Name" 
+                          className="w-full border-b border-black placeholder:text-black focus:outline-none roboto-mono"  
+                        />
+                        <input 
+                          type="email" 
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="E-mail" 
+                          className="w-full border-b border-black placeholder:text-black focus:outline-none roboto-mono" 
+                        />
+                        <input 
+                          type="text" 
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          placeholder="Message" 
+                          className="w-full border-b border-black placeholder:text-black focus:outline-none roboto-mono"
+                        />
                         <div className="flex items-center justify-between w-full">
-                          <button type="submit" className="roboto-mono text-md text-black flex items-center justify-start gap-2"><span className="text-4xl"><IoCloudUpload /></span>Upload File</button>
-                          <button type="submit" className="roboto-mono text-md py-4 pl-6 rounded-l-lg bg-black text-white -mr-8 self-end flex items-center justify-start gap-2 pr-8 hover:gap-6 hover:pr-4 hover:cursor-pointer transition-all duration-300">SEND MESSAGE <span className="text-lg"><FaArrowRightLong /></span></button>
+                          <button type="button" className="roboto-mono text-md text-black flex items-center justify-start gap-2">
+                            <span className="text-4xl"><IoCloudUpload /></span>Upload File
+                          </button>
+                          <button 
+                            type="submit" 
+                            disabled={status === 'sending'}
+                            className="roboto-mono text-md py-4 pl-6 rounded-l-lg bg-black text-white -mr-8 self-end flex items-center justify-start gap-2 pr-8 hover:gap-6 hover:pr-4 hover:cursor-pointer transition-all duration-300"
+                          >
+                            {status === 'sending' ? 'SENDING...' : 'SEND MESSAGE'} <span className="text-lg"><FaArrowRightLong /></span>
+                          </button>
                         </div>
                     </form>
                   </div>

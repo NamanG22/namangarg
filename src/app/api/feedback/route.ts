@@ -1,27 +1,21 @@
 import { NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb';
-import { Feedback, FeedbackStats } from '@/types';
-import { UpdateFilter } from 'mongodb';
+import connectDB from '@/lib/mongodb';
+import Feedback from '@/models/Feedback';
 
 export async function GET() {
   try {
-    const client = await clientPromise;
-    const db = client.db('portfolio');
-    const collection = db.collection<FeedbackStats>('feedback');
+    await connectDB();
     
-    const stats = await collection.findOne({});
+    let stats = await Feedback.findOne({});
     
     if (!stats) {
       // Initialize feedback stats if they don't exist
-      const initialStats: Omit<FeedbackStats, '_id'> = {
+      stats = await Feedback.create({
         totalLikes: 0,
         totalDislikes: 0,
         totalFeedbacks: 0,
         feedbacks: []
-      };
-      
-      const result = await collection.insertOne(initialStats);
-      return NextResponse.json({ ...initialStats, _id: result.insertedId });
+      });
     }
     
     return NextResponse.json(stats);
@@ -33,31 +27,34 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const client = await clientPromise;
-    const db = client.db('portfolio');
-    const collection = db.collection<FeedbackStats>('feedback');
+    await connectDB();
     
-    const feedback: Omit<Feedback, 'timestamp'> = await request.json();
-    const feedbackWithTimestamp = { ...feedback, timestamp: new Date() };
+    const feedback = await request.json();
     
-    const updateOperation: UpdateFilter<FeedbackStats> = {
+    const updateOperation = {
       $inc: {
         totalLikes: feedback.isLike ? 1 : 0,
         totalDislikes: feedback.isLike ? 0 : 1,
         totalFeedbacks: 1
       },
       $push: {
-        feedbacks: feedbackWithTimestamp
+        feedbacks: {
+          isLike: feedback.isLike,
+          message: feedback.message,
+          timestamp: new Date()
+        }
       }
     };
     
-    await collection.updateOne(
+    const updatedStats = await Feedback.findOneAndUpdate(
       {}, // Update the first document
       updateOperation,
-      { upsert: true }
+      { 
+        upsert: true,
+        new: true // Return the updated document
+      }
     );
     
-    const updatedStats = await collection.findOne({});
     return NextResponse.json(updatedStats);
   } catch (error) {
     console.error('Database Error:', error);
