@@ -5,8 +5,7 @@ import Link from "next/link";
 import { FaLinkedin } from "react-icons/fa";
 import { useState, useRef } from 'react';
 import FeedbackPopup from './FeedbackPopup';
-import { MdChatBubble } from "react-icons/md";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
