@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import { Feedback, FeedbackStats } from '@/types';
-import { Document, UpdateFilter, ObjectId } from 'mongodb';
+import { UpdateFilter } from 'mongodb';
 
 export async function GET() {
   try {
