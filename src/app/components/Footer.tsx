@@ -46,7 +46,7 @@ export default function Footer() {
                         onClose={() => setIsPopupOpen(false)}
                         likesCount={likesCount}
                         onSubmit={handleFeedbackSubmit}
-                        thumbsRef={thumbsRef}
+                        thumbsRef={thumbsRef as React.RefObject<HTMLDivElement>}
                     />
                 </div>
 
