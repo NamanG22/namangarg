@@ -6,11 +6,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Footer from "../components/Footer";
-
-// const robotoMono = Roboto_Mono({
-//   variable: "--font-roboto-mono",
-//   subsets: ["latin"],
-// });
+import Image from "next/image";
 
 const projects = [
   {
@@ -23,7 +19,7 @@ const projects = [
     ],
     technologies: ["Python", "PyAudio", "Gemini-1.5-flash"],
     link: "https://github.com/NamanG22/Speech-to-Text-Converter",
-    image: "/bg.jpg"
+    image: ["/gemini2.png", "/gemini3.webp", "/gemini.png"]
   },
   {
     title: "Nova Booking",
@@ -38,7 +34,7 @@ const projects = [
     ],
     technologies: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS", "JWT", "HTTP Cookies"],
     link: "https://github.com/NamanG22/Nova-Booking",
-    image: "/bg.jpg"
+    image: ["/bg.jpg", "/hotel.jpg", "/hotel2.jpg"]
   },
   {
     title: "NewsViews",
@@ -50,7 +46,7 @@ const projects = [
     ],
     technologies: ["Java", "Spring Boot", "APIs", "Postman", "Git", "Docker", "Render"],
     link: "https://github.com/NamanG22/NewsViews",
-    image: "/bg.jpg"
+    image: ["/bg.jpg", "/bg.jpg", "/bg.jpg"]
   }
 ]
 
@@ -124,9 +120,9 @@ export default function Projects() {
           >
           
             <div className="h-full flex flex-col items-center justify-center p-8">
-              <img src={projects[0].image} alt={projects[0].title} className="w-[80%] object-cover" />
-              <img src={projects[0].image} alt={projects[0].title} className="w-[30%] object-cover -mt-20 self-start ml-5" />
-              <img src={projects[0].image} alt={projects[0].title} className="w-[50%] object-cover -mt-40 self-end" />
+              <Image src={projects[index].image[0]} alt={projects[0].title} width={1000} height={1000} className="w-[80%] object-cover" />
+              <Image src={projects[index].image[1]} alt={projects[0].title} width={1000} height={1000} className="w-[30%] object-cover -mt-20 self-start ml-5" />
+              <Image src={projects[index].image[2]} alt={projects[0].title} width={1000} height={1000} className="w-[50%] object-cover -mt-40 self-end" />
             </div>
           </motion.div>
           <motion.div 

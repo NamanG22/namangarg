@@ -1,8 +1,8 @@
 'use client'
 // import { Dancing_Script, Roboto_Mono } from "next/font/google";
 import Header from "../components/Header";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import { SiComma } from "react-icons/si";
 import { FaArrowUp, FaJava } from "react-icons/fa";
@@ -35,22 +35,24 @@ import { HiPuzzlePiece } from "react-icons/hi2";
 import { FaCode } from "react-icons/fa6";
 import { IoBug } from "react-icons/io5";
 import { MdOutlineKeyboardCommandKey } from "react-icons/md";
-
+import Image from "next/image";
 
 // const dancingScript = Dancing_Script({
 //   variable: "--font-dancing-script",
 //   subsets: ["latin"],
 // });
 
+
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  const sectionGap = 0.078;
-  const sectionLength = 0.128;
+  const sectionGap = 0.066;
+  const sectionLength = 0.116;
 
   const scrollToSection = (sectionIndex: number) => {
     // Get the container element using the ref
@@ -129,7 +131,6 @@ export default function About() {
 
   return (
     <>
-      {/* Fixed Background */}
       <motion.div 
         className='min-h-screen w-screen fixed top-0 left-0'
         style={{
@@ -139,13 +140,10 @@ export default function About() {
           backgroundRepeat: "no-repeat",
           backgroundPositionX:"100%",
           backgroundPositionY:"100%",
-        //   opacity: firstBackgroundOpacity,
           zIndex: 1,
-        //   pointerEvents: firstBackgroundPointerEvents
         }}
-      />
-
-      <div ref={containerRef} className='min-h-[950vh] relative'> 
+        />
+      <div ref={containerRef} className='min-h-[600vh] relative'> 
         <Header />
         <div className="fixed bottom-16 right-16 z-150 hover:cursor-pointer opacity-50">
           <button
@@ -400,9 +398,27 @@ export default function About() {
                 </div>
               </div>
               <div className='w-1/2 flex items-center justify-center'>
-                <img src="/ghibli_me.png" alt="naman" className="h-[320px] object-cover translate-x-[50px] translate-y-[-100px]" />
-                <img src="/balcony_me.png" alt="naman" className="h-[320px] object-cover z-2" />
-                <img src="/office_me.jpeg" alt="naman" className="h-[320px] object-cover translate-x-[-50px] translate-y-[100px]" />
+                <Image 
+                  src="/ghibli_me.png" 
+                  alt="naman" 
+                  width={320}
+                  height={320}
+                  className="h-[320px] object-cover translate-x-[50px] translate-y-[-100px]" 
+                />
+                <Image 
+                  src="/balcony_me.png" 
+                  alt="naman" 
+                  width={320}
+                  height={320}
+                  className="h-[320px] object-cover z-2" 
+                />
+                <Image 
+                  src="/office_me.jpeg" 
+                  alt="naman" 
+                  width={320}
+                  height={320}
+                  className="h-[320px] object-cover translate-x-[-50px] translate-y-[100px]" 
+                />
               </div>
             </div>
           </motion.div>
@@ -615,15 +631,15 @@ export default function About() {
                 <iframe src="/cert/Codekaze-Round2.pdf" className='h-[230px] hover:z-10' />
             </div>
             <div className='text-white w-full text-left flex items-center justify-between'>
-              <ul className='flex flex-col list-disc'>
+              <ul className='flex w-full flex-col list-disc'>
                 <li className='text-lg roboto-mono'>Solved 600+ DSA questions on LeetCode, CNStudio, and geeksforgeeks.</li>
                 <li className='text-lg roboto-mono'> 1557 Rating on LeetCode, 1093 - Institute Ranking on GFG among 11262 Students. </li>
                 <li className='text-lg roboto-mono'>Rank - 2 in a State Level Mathematics Olympiad.</li>
               </ul>
               <div className="h-full flex flex-col items-center justify-center">
-                <img src="/achievements/lc.png" alt="lc" className="h-[200px] object-cover" />
-                <img src="/achievements/gfg.png" alt="gfg" className="h-[150px] object-cover -mt-30 -translate-x-10" />
-                <img src="/achievements/maths.jpg" alt="maths" className="h-[200px] object-cover -mt-54 translate-x-30" />
+                <Image src="/achievements/lc.png" alt="lc" width={1000} height={1000} className="w-[40%] object-cover" />
+                <Image src="/achievements/gfg.png" alt="gfg" width={1000} height={1000} className="w-[40%] object-cover -mt-20 -translate-x-5" />
+                <Image src="/achievements/maths.jpg" alt="maths" width={1000} height={1000} className="w-[30%] object-cover -mt-34 translate-x-30" />
               </div>
             </div>
           </motion.div>
@@ -645,33 +661,27 @@ export default function About() {
             style={{ scale: sixthSectionScale, pointerEvents: sixthSectionPointerEvents }}
             className='flex flex-col w-full space-y-6 justify-center items-center h-full'
           >
-            <div className='text-white w-full text-center self-top self-start'>
+            <div className='text-white w-full text-center'>
                 <h1 className='text-6xl roboto-mono'>Hobbies</h1>
                 <p className='text-2xl roboto-mono text-gray-400'>A peek into the things I enjoy when I&apos;m not building or debugging.</p>
             </div>
-            <div className='flex w-full items-center h-[450px] justify-between'>
-              <div className='flex flex-col items-center justify-center w-[350px] space-y-4'>
-                <div className='flex flex-col items-center justify-center rounded-lg p-2 py-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300'>
+            <div className='flex w-full items-center justify-center space-x-4'>
+              <div className='flex flex-col items-center justify-center w-1/2 h-[50vh] space-y-4'>
+                <div className='w-full h-full flex flex-col items-center justify-center rounded-lg p-2 py-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300' style={{backgroundImage: "url('/hobbies/space.jpg')", backgroundSize: "cover", backgroundPosition: "center"}}>
                   <h1 className='text-2xl roboto-mono'>Stargazing & Astronomy</h1>
                   <p className='text-sm roboto-mono text-center'>Endlessly curious about the universe—stars, black holes, and everything in between.</p>
                 </div>
-                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300'>
+                <div className='w-full h-full flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300' style={{backgroundImage: "url('/hobbies/sketch.jpg')", backgroundSize: "cover", backgroundPositionX: "100%", backgroundPositionY: "65%"}}>
                   <h1 className='text-2xl roboto-mono'>Drawing & Sketching</h1>
                   <p className='text-sm roboto-mono text-center'>Sketching helps me unwind and express ideas beyond code.</p>
                 </div>
               </div>
-              <div className='flex flex-col items-center justify-center'>
-                <img src="/hobbies/space.jpg" alt="space" className={`absolute h-[300px] object-cover z-0`} />
-                <img src="/hobbies/sketch.jpg" alt="sketch" className={`absolute h-[350px] object-cover z-0`} />
-                <img src="/hobbies/music.jpg" alt="music" className={`absolute h-[320px] object-cover z-0`} />
-                <img src="/hobbies/manga.jpg" alt="manga" className={`absolute h-[300px] object-cover z-0`} />
-              </div>
-              <div className='flex flex-col items-center justify-center w-[350px] space-y-4'>
-                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300'>
+              <div className='flex flex-col items-center justify-center w-1/2 h-[50vh] space-y-4'>
+                <div className='w-full h-full flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300'  style={{backgroundImage: "url('/hobbies/music.jpg')", backgroundSize: "cover", backgroundPositionX: "100%", backgroundPositionY: "55%"}}>
                   <h1 className='text-2xl roboto-mono'>Music & Mood</h1>
                   <p className='text-sm roboto-mono text-center'>From lo-fi to rock—music fuels my focus and creativity.</p>
                 </div>
-                <div className='flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300'>
+                <div className='w-full h-full flex flex-col items-center justify-center rounded-lg p-4 space-y-2 border hover:bg-white hover:text-black transition-all duration-300' style={{backgroundImage: "url('/hobbies/manga.jpg')", backgroundSize: "cover", backgroundPositionX: "100%", backgroundPositionY: "60%"}}>
                   <h1 className='text-2xl roboto-mono'>Anime & Storytelling</h1>
                   <p className='text-sm roboto-mono text-center'>A huge fan of thoughtful plots, great animation, and unforgettable characters.</p>
                 </div>
