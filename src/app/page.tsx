@@ -2,12 +2,11 @@
 import Header from "./components/Header";
 import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import Footer from "./components/Footer";
 import { FaJava, FaPython, FaReact, FaNode } from "react-icons/fa";
 import { RiOpenaiFill } from "react-icons/ri";
 import { SiGooglegemini, SiMongodb, SiNextdotjs, SiSpringboot } from "react-icons/si";
-import LoadingScreen from "./components/LoadingScreen";
 import { experienceData } from "@/data/experience";
 
 export default function Home() {

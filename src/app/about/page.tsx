@@ -1,8 +1,8 @@
 'use client'
 // import { Dancing_Script, Roboto_Mono } from "next/font/google";
 import Header from "../components/Header";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import {motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import Footer from "../components/Footer";
 import { SiComma } from "react-icons/si";
 import { FaArrowUp, FaJava } from "react-icons/fa";
