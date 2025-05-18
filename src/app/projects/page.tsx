@@ -1,8 +1,5 @@
 'use client'
-// import { Roboto_Mono } from "next/font/google";
 import Header from "../components/Header";
-import Link from "next/link";
-// import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Footer from "../components/Footer";
@@ -34,7 +31,7 @@ const projects = [
     ],
     technologies: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS", "JWT", "HTTP Cookies"],
     link: "https://github.com/NamanG22/Nova-Booking",
-    image: ["/bg.jpg", "/hotel.jpg", "/hotel2.jpg"]
+    image: ["/hotel3.jpeg", "/hotel.jpg", "/hotel2.jpg"]
   },
   {
     title: "NewsViews",
@@ -46,7 +43,7 @@ const projects = [
     ],
     technologies: ["Java", "Spring Boot", "APIs", "Postman", "Git", "Docker", "Render"],
     link: "https://github.com/NamanG22/NewsViews",
-    image: ["/bg.jpg", "/bg.jpg", "/bg.jpg"]
+    image: ["/news.jpeg", "/news2.jpg", "/news3.jpg"]
   }
 ]
 
@@ -143,8 +140,11 @@ export default function Projects() {
                     <h3 key={index2} className="text-sm sm:text-md roboto-mono bg-white/20 px-3 py-1 rounded-full text-white">{technology}</h3>
                   ))}
                 </div>
-                <div className="flex flex-row gap-4 w-full">
+                {/* <div className="flex flex-row gap-4 w-full">
                   <Link href={projects[index].link} className="w-full text-center text-white text-sm sm:text-lg roboto-mono bg-white/20 py-3 rounded-md">View Project</Link>
+                </div> */}
+                <div>
+                  
                 </div>
               </div>
             </div>
